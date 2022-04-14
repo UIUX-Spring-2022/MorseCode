@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+
+{% block content %} 
+
+<script>
+    let id = {{id|tojson}};
+</script>
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'learn.js') }}"></script>
+
+
+<div>
+    insert questions here
+</div>
+{% endblock %}

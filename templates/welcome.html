@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+
+{% block content %} 
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'welcome.js') }}"></script>
+
+<body>
+<div class = "header_welcome">
+    Learn Morse Code
+</div>
+<div class = "subheader_welcome">
+    Learn to encode words and letters in a system of dashes and dots
+</div>
+<div>
+    <a href = "/about">
+    <button class="btn-sm btn-outline-secondary" id="begin">Begin</button>
+    </a>
+</div>
+</body>
+{% endblock %}
