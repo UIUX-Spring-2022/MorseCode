@@ -11,6 +11,10 @@ def welcome():
     return render_template('welcome.html')
 #we probably need to divide the templates for learn and quiz into learn_1, learn_2 etc based on different layouts for learning/quizzing
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 @app.route('/edit/<id>')
 def learn(id):
     return render_template('learn.html', id=id)
