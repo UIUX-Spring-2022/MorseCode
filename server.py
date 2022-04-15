@@ -6,6 +6,9 @@ app = Flask(__name__)
 
 #insert data and everything here
 
+learn_combos= ['A', 'E','M','S']
+learn_combos_2 = ['I','N','T','O']
+
 @app.route('/')
 def welcome():
     return render_template('welcome.html')
@@ -15,7 +18,17 @@ def welcome():
 def about():
     return render_template('about.html')
 
-@app.route('/edit/<id>')
+@app.route('/learn_letters/1')
+def learn_letters():
+    global learn_combos
+    return render_template('learn_letters_1.html', learn_combos=learn_combos)
+
+@app.route('/learn_letters/2')
+def learn_letters_2():
+    global learn_combos_2
+    return render_template('learn_letters_2.html', learn_combos_2=learn_combos_2)
+
+@app.route('/learn/<id>')
 def learn(id):
     return render_template('learn.html', id=id)
 

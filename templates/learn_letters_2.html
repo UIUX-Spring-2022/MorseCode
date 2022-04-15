@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+
+{% block content %} 
+
+<source src="{{ url_for('static', filename='I.mp3') }}" type="audio/mpeg">
+<source src="{{ url_for('static', filename='N.mp3') }}" type="audio/mpeg">
+<source src="{{ url_for('static', filename='O.mp3') }}" type="audio/mpeg">
+<source src="{{ url_for('static', filename='T.mp3') }}" type="audio/mpeg">
+
+<script>
+    let learn_combos_2 = {{learn_combos_2|tojson}};
+    new_id = id + 1;
+
+</script>
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'learn_letters_1.js') }}"></script>
+
+
+
+
+<div class = "row">
+    <div class = "col-md-6">
+        <div class = "letter">
+            {{learn_combos_2[0]}}
+        </div>
+        <audio src = 'I.mp3' controls>
+        </audio>
+    </div>
+    <div class = "col-md-6">
+        <div class = "letter">
+            {{learn_combos_2[1]}}
+        </div>
+        <audio src = 'N.mp3' controls>
+        </audio>
+    </div>
+</div>
+<div class = "row">
+    <div class = "col-md-6">
+        <div class = "letter">
+            {{learn_combos_2[2]}}
+        </div>
+        <audio src = 'T.mp3' controls>
+        </audio>
+    </div>
+    <div class = "col-md-6">
+        <div class = "letter">
+            {{learn_combos_2[3]}}
+        </div>
+        <audio src = 'O.mp3' controls>
+        </audio>
+    </div>
+</div>
+<div class="row">
+    <div>
+        <a href = "/learn/1">
+            <button class="btn-sm btn-outline-secondary" id="begin">Next</button>
+        </a>
+    </div>
+</div>
+{% endblock %}
