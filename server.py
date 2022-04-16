@@ -45,7 +45,7 @@ def learn_letters(id):
     id = int(id)+1 #add one
     id = str(id) #back to string
     url = "/learn_letters/2" if id == "2" else "/learn/3"
-    return render_template('learn_letters_1.html', learn_combos=lesson, files=files, id=id, url=url, codes=codes)
+    return render_template('learn_letters.html', learn_combos=lesson, files=files, id=id, url=url, codes=codes)
 
 @app.route('/learn/<id>')
 def learn(id):
