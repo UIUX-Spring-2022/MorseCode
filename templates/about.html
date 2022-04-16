@@ -1,31 +1,39 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block content %}
 
-{% block content %} 
+<script>
+    id = 1
+</script>
+
 
 <body>
-<div class = "row">
-    <div class= "col-md-6">
-        <div>
-            What is Morse Code?
-        </div>
-        <div>
-            Morse code is a method used in telecommunication to encode text characters as standardized sequences of two different signal durations, called dots and dashes, or dits and dahs. Morse code is named after Samuel Morse, one of the inventors of the telegraph. 
-        </div>
-        <div>
-            The dit duration is the basic unit of time measurement in Morse code transmission. The duration of a dah is three times the duration of a dit. Each dit or dah within an encoded character is followed by a period of signal absence, called a space, equal to the dit duration. The letters of a word are separated by a space of duration equal to three dits, and words are separated by a space equal to seven dits.
-        </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div>What is Morse Code?</div>
+      <div>
+        Morse code is a method used in telecommunication to encode text
+        characters as standardized sequences of two different signal durations,
+        called dots and dashes, or dits and dahs. Morse code is named after
+        Samuel Morse, one of the inventors of the telegraph.
+      </div>
+      <div>
+        The dit duration is the basic unit of time measurement in Morse code
+        transmission. The duration of a dah is three times the duration of a
+        dit. Each dit or dah within an encoded character is followed by a period
+        of signal absence, called a space, equal to the dit duration. The
+        letters of a word are separated by a space of duration equal to three
+        dits, and words are separated by a space equal to seven dits.
+      </div>
     </div>
-    <div class = "col-md-6">
-        <iframe src = "https://youtu.be/_J8YcQETyTw" autoplay=1>
-        </iframe>
+    <div class="col-md-6">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/_J8YcQETyTw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
-</div>
-<div class="row">
+  </div>
+  <div class="row">
     <div>
-        <a href = "/learn_letters/1">
-            <button class="btn-sm btn-outline-secondary" id="begin">Next</button>
-        </a>
+      <a href="/learn_letters/1">
+        <button class="btn-sm btn-outline-secondary" id="begin">Next</button>
+      </a>
     </div>
-</div>
+  </div>
 </body>
 {% endblock %}

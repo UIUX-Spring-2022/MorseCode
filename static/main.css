@@ -7,3 +7,14 @@
     size: 30px;
     margin-left: 50px;
 }
+body {
+    background-color: #6fa8dcff;
+    color: white;
+}
+
+.navbar-light .navbar-brand {
+    color: white;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
