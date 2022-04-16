@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+
+{% block content %} 
+
+<script>
+    let id = {{id|tojson}};
+    let letter = {{letter|tojson}};
+    let sound = {{sound|tojson}};
+</script>
+
+
+<div>
+    learn_type_a
+</div>
+<div class="row">
+    <div>
+        {{id}}/7
+    </div>
+    <div>
+        <a href = "/learn/{{id}}">
+            <button class="btn-sm btn-outline-secondary" id="begin">Next</button>
+        </a>
+    </div>
+</div>
+{% endblock %}

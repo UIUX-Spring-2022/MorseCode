@@ -1,14 +1,12 @@
 {% extends "layout.html" %} {% block content %}
 
-<script>
-    id = 1
-</script>
-
 
 <body>
-  <div class="row">
+<div class="row">
     <div class="col-md-6">
-      <div>What is Morse Code?</div>
+      <div class="about">
+          What is Morse Code?
+      </div>
       <div>
         Morse code is a method used in telecommunication to encode text
         characters as standardized sequences of two different signal durations,
@@ -27,13 +25,16 @@
     <div class="col-md-6">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/_J8YcQETyTw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
-  </div>
-  <div class="row">
+</div>
+<div class="row">
+    <div>
+        1/7
+    </div>
     <div>
       <a href="/learn_letters/1">
         <button class="btn-sm btn-outline-secondary" id="begin">Next</button>
       </a>
     </div>
-  </div>
+</div>
 </body>
 {% endblock %}

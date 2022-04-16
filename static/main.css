@@ -7,6 +7,7 @@
     size: 30px;
     margin-left: 50px;
 }
+
 body {
     background-color: #6fa8dcff;
     color: white;
@@ -18,3 +19,18 @@ body {
 .navbar-light .navbar-nav .nav-link {
     color: white;
 }
+
+#begin{
+    background-color: rgb(255, 217, 0);
+}
+
+.about{
+    size: 30px;
+    font-style: bold;
+}
+
+.morse_img{
+    height: 100px;
+    width: 700px;
+}
+

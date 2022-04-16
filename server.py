@@ -40,11 +40,24 @@ def learn_letters(id):
     id = int(id)+1 #add one
     id = str(id) #back to string
     url = "/learn_letters/2" if id == "2" else "/learn/3"
-    return render_template('learn_letters_1.html', learn_combos=lesson, files=files, id=id, url=url)
+    return render_template('learn_letters.html', learn_combos=lesson, files=files, id=id, url=url)
 
 @app.route('/learn/<id>')
 def learn(id):
-    return render_template('learn.html', id=id)
+    global letter_sounds
+    if int(id) == 3 or int(id) == 5:
+        letter = "A" if int(id) == "3" else "S"
+        sound = letter_sounds[0]["link"] if int(id) == "3" else letter_sounds[6]["link"]
+        id = int(id)+1
+        id = str(id)
+        return render_template('learn_type_a.html', id=id, letter=letter, sound=sound)
+    else:
+        id = int(id)+1
+        id = str(id)
+        return render_template('learn_type_b.html', id=id)
+# READ HERE
+# learn type a is for slides 4/7 and 6/7 of learn because they're the same format
+# learn type b is for slides 5/7 and 7/7 of learn because they're the same format
 
 @app.route('/quiz')
 def quiz():

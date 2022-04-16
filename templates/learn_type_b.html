@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+
+{% block content %} 
+
+<script>
+    let id = {{id|tojson}};
+</script>
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'learn.js') }}"></script>
+
+
+<div>
+    learn type b
+</div>
+<div class="row">
+    <div>
+        {{id}}/7
+    </div>
+    <div>
+        <a href = "/learn/{{id}}">
+            <button class="btn-sm btn-outline-secondary" id="begin">Next</button>
+        </a>
+    </div>
+</div>
+{% endblock %}

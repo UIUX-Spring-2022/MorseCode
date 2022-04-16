@@ -17,6 +17,12 @@
 <script type="text/javascript" src="{{ url_for('static', filename = 'learn_letters_1.js') }}"></script>
 
 
+<div class="title_learn_letters">
+    For our purposes we'll focus on a few letters for now.
+</div>
+<div class="subtitle_learn_letters">
+    Click on each letter to hear it's corresponding sound
+</div>
 
 
 <div class = "row">
@@ -52,6 +58,9 @@
     </div>
 </div>
 <div class="row">
+    <div>
+        {{id}}/7
+    </div>
     <div>
         <a href = {{url}}>
             <button class="btn-sm btn-outline-secondary" id="begin">Next</button>

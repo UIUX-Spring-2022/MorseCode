@@ -6,16 +6,26 @@
 <script type="text/javascript" src="{{ url_for('static', filename = 'welcome.js') }}"></script>
 
 <div class="row">
-    <div class="col-md-10 offset-md-1">
+    <div class="col-md-10">
         <h1>Learn Morse Code</h1>
         <div>
             Learn to encode words and letters in a system of dashes and dots
         </div>
     </div>
 </div>
+<br>
 <div class="row justify-content-right">
     <a href = "/about">
-    <button class="btn-sm btn-outline-secondary" id="begin">Begin</button>
+    <button class="btn-sm btn-outline-secondary" style="margin-left: 10px; margin-top: -100px" id="begin">Begin</button>
     </a>
+<div class = "row">
+    <div class = "col-md-6">
+        <img class = "morse_img" style="height: 300px; width: 720px; margin-left: -100px;" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Dots_and_dashes_P_morse_code.svg/1280px-Dots_and_dashes_P_morse_code.svg.png">
+    </div>
+    <div class = "col-md-6">
+        <img class = "morse_img" style="height: 300px; width: 720px; margin-left: -150px" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Dots_and_dashes_P_morse_code.svg/1280px-Dots_and_dashes_P_morse_code.svg.png">
+    </div>
+</div>
+
 </div>
 {% endblock %}
