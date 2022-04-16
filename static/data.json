@@ -1,0 +1,57 @@
+{
+    "status": "OK",
+    "copyright": "Team Morse Code",
+    "authors": ["Andrew Kenn", "Sophie Johnson", "Nikolas Kiswardy", "Dhuha Saraireh"],
+    "credits": "Wikimedia for audio hosting",
+    "last_modified": "2022-04-16",
+    "sounds": [
+        {
+            "id": 1,
+            "letter": "a",
+            "link": "https://upload.wikimedia.org/wikipedia/commons/f/f3/A_morse_code.ogg",
+            "description": "Morse code audio file for the letter 'a' "
+        },
+        {
+            "id": 2,
+            "letter": "e",
+            "link": "https://upload.wikimedia.org/wikipedia/commons/e/e7/E_morse_code.ogg",
+            "description": "Morse code audio file for the letter 'e' "
+        },
+        {
+            "id": 3,
+            "letter": "i",
+            "link": "https://upload.wikimedia.org/wikipedia/commons/d/d9/I_morse_code.ogg",
+            "description": "Morse code audio file for the letter 'i' "
+        },
+        {
+            "id": 4,
+            "letter": "o",
+            "link": "https://upload.wikimedia.org/wikipedia/commons/4/41/O_morse_code.ogg",
+            "description": "Morse code audio file for the letter 'o' "
+        },
+        {
+            "id": 5,
+            "letter": "m",
+            "link": "https://upload.wikimedia.org/wikipedia/commons/9/97/M_morse_code.ogg",
+            "description": "Morse code audio file for the letter 'm' "
+        },
+        {
+            "id": 6,
+            "letter": "n",
+            "link": "https://upload.wikimedia.org/wikipedia/commons/5/5a/N_morse_code.ogg",
+            "description": "Morse code audio file for the letter 'n' "
+        },
+        {
+            "id": 7,
+            "letter": "s",
+            "link": "https://upload.wikimedia.org/wikipedia/commons/d/d8/S_morse_code.ogg",
+            "description": "Morse code audio file for the letter 's' "
+        },
+        {
+            "id": 8,
+            "letter": "t",
+            "link": "https://upload.wikimedia.org/wikipedia/commons/b/ba/T_morse_code.ogg",
+            "description": "Morse code audio file for the letter 't' "
+        }
+    ]
+}

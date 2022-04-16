@@ -3,20 +3,18 @@
 
 {% block content %} 
 
-<script>
-    let quiz_id = {{quiz_id|tojson}};
-</script>
 
 <script type="text/javascript" src="{{ url_for('static', filename = 'quiz.js') }}"></script>
 
 
-<div>
-    <h1>Learn Morse Code</h1>
-    <h2>Learn to encode words and letters in a system of dashes and dots</h2>
+<div class="row">
+    <h1>Now for testing your knowledge...</h1>
 </div>
-<div>
-    <a href = "/quiz/"+id>
-    <button class="btn-sm btn-outline-secondary" id="begin">Next</button>
-    </a>
+<div class="row">
+    <div>
+        <a href = "/question/1">
+            <button class="btn-sm btn-outline-secondary" id="begin">Next</button>
+        </a>
+    </div>
 </div>
 {% endblock %}

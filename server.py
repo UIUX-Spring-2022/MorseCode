@@ -1,10 +1,18 @@
-from inspect import isdatadescriptor
+import os
+
 from flask import Flask
 from flask import render_template, url_for, redirect
 from flask import Response, request, jsonify
+from flask import json
+from operator import itemgetter
+
 app = Flask(__name__)
 
-#insert data and everything here
+
+data_json = os.path.join(app.static_folder, 'data.json')
+with open(data_json) as morse_data:
+    data = json.load(morse_data)
+    letter_sounds = data["sounds"]
 
 learn_combos= ['A', 'E','M','S']
 learn_combos_2 = ['I','N','T','O']
@@ -18,23 +26,23 @@ def welcome():
 def about():
     return render_template('about.html')
 
-@app.route('/learn_letters/1')
-def learn_letters():
-    global learn_combos
-    return render_template('learn_letters_1.html', learn_combos=learn_combos)
-
-@app.route('/learn_letters/2')
-def learn_letters_2():
-    global learn_combos_2
-    return render_template('learn_letters_2.html', learn_combos_2=learn_combos_2)
+@app.route('/learn/<id>')
+def learn_letters(id):
+    global learn_combos, learn_combos_2
+    lesson = learn_combos if id == 1 else learn_combos_2
+    return render_template('learn_letters_1.html', learn_combos=lesson)
 
 @app.route('/learn/<id>')
 def learn(id):
     return render_template('learn.html', id=id)
 
-@app.route('/quiz/<id>')
-def quiz(quiz_id):
-    return render_template('quiz.html', quiz_id=quiz_id)
+@app.route('/quiz')
+def quiz():
+    return render_template('quiz.html')
+
+@app.route('/question/<id>')
+def question(id):
+    return render_template('question.html', id=id)
 
 if __name__ == '__main__':
    app.run(debug = True)
