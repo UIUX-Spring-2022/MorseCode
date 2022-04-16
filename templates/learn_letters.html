@@ -5,9 +5,10 @@
 
 <script>
     let learn_combos = {{learn_combos|tojson}};
-    let files = {{files|tojson}}
-    let id = {{id|tojson}}
-    let url = {{url|tojson}}
+    let files = {{files|tojson}};
+    let id = {{id|tojson}};
+    let url = {{url|tojson}};
+    let codes = {{codes|tojson}};
 
     console.log(url)
 
@@ -24,11 +25,22 @@
     Click on each letter to hear it's corresponding sound
 </div>
 
+<div class="row">
+    <div class="col-md-12">
+        <h1> For our purposes we'll focus on a few letters for now</h1>
+    </div>
 
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h6> Click on each letter to hear its corresponding sound </h6>
+    </div>
+</div>
 <div class = "row">
     <div class = "col-md-6">
         <div class = "letter">
             {{learn_combos[0]}}
+            {{codes[0]}}
         </div>
         <audio src = {{files[0]}} controls>
         </audio>
@@ -36,6 +48,7 @@
     <div class = "col-md-6">
         <div class = "letter">
             {{learn_combos[1]}}
+            {{codes[1]}}
         </div>
         <audio src = {{files[1]}} controls>
         </audio>
@@ -45,6 +58,7 @@
     <div class = "col-md-6">
         <div class = "letter">
             {{learn_combos[2]}}
+            {{codes[2]}}
         </div>
         <audio src = {{files[2]}} controls>
         </audio>
@@ -52,6 +66,7 @@
     <div class = "col-md-6">
         <div class = "letter">
             {{learn_combos[3]}}
+            {{codes[3]}}
         </div>
         <audio src = {{files[3]}} controls>
         </audio>

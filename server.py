@@ -37,10 +37,15 @@ def learn_letters(id):
     global learn_combos, learn_combos_2, sounds_1, sounds_2
     lesson = learn_combos if id == "1" else learn_combos_2
     files = sounds_1 if id == "1" else sounds_2
+    codes=[]
+    for x in letter_sounds:
+        letter= x['letter'].upper()
+        if letter in lesson:
+            codes.append(x['code'])
     id = int(id)+1 #add one
     id = str(id) #back to string
     url = "/learn_letters/2" if id == "2" else "/learn/3"
-    return render_template('learn_letters.html', learn_combos=lesson, files=files, id=id, url=url)
+    return render_template('learn_letters_1.html', learn_combos=lesson, files=files, id=id, url=url, codes=codes)
 
 @app.route('/learn/<id>')
 def learn(id):
