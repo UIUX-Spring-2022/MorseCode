@@ -1,10 +1,16 @@
-from inspect import isdatadescriptor
 from flask import Flask
 from flask import render_template, url_for, redirect
 from flask import Response, request, jsonify
+from flask import json
+from operator import itemgetter
+
 app = Flask(__name__)
 
-#insert data and everything here
+
+data_json = os.path.join(app.static_folder, 'data.json')
+with open(data_json) as morse_data:
+    data = json.load(morse_data)
+    letter_sounds = data["sounds"]
 
 learn_combos= ['A', 'E','M','S']
 learn_combos_2 = ['I','N','T','O']
