@@ -44,22 +44,28 @@ def learn_letters(id):
             codes.append(x['code'])
     id = int(id)+1 #add one
     id = str(id) #back to string
-    url = "/learn_letters/2" if id == "2" else "/learn/3"
+    url = "/learn_letters/2" if id == "2" else "/learn/1"
     return render_template('learn_letters.html', learn_combos=lesson, files=files, id=id, url=url, codes=codes)
 
 @app.route('/learn/<id>')
 def learn(id):
     global letter_sounds
-    if int(id) == 3 or int(id) == 5:
-        letter = "A" if int(id) == "3" else "S"
-        sound = letter_sounds[0]["link"] if int(id) == "3" else letter_sounds[6]["link"]
-        id = int(id)+1
-        id = str(id)
-        return render_template('learn_type_a.html', id=id, letter=letter, sound=sound)
+    if int(id)%2!=0:
+        letter= letter_sounds[int(id)]["letter"].upper()
+        sound = letter_sounds[int(id)]["link"]
+        code= letter_sounds[int(id)]["code"]
+        next_id = int(id)+1
+        url= "/learn/" + str(next_id)
+        if next_id==8:
+            url= "/quiz"
+        return render_template('learn_type_a.html', id=id, letter=letter, sound=sound, code=code, url=url)
     else:
-        id = int(id)+1
-        id = str(id)
-        return render_template('learn_type_b.html', id=id)
+        letter= letter_sounds[int(id)]["letter"].upper()
+        sound = letter_sounds[int(id)]["link"]
+        code= letter_sounds[int(id)]["code"]
+        next_id = int(id)+1
+        url= "/learn/" + str(next_id)
+        return render_template('learn_type_b.html', id=id, letter=letter, sound=sound, code=code, url=url,)
 # READ HERE
 # learn type a is for slides 4/7 and 6/7 of learn because they're the same format
 # learn type b is for slides 5/7 and 7/7 of learn because they're the same format

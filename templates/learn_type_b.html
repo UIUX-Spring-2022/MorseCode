@@ -5,20 +5,45 @@
 
 <script>
     let id = {{id|tojson}};
+    let url = {{url|tojson}};
+    let code= {{code|tojson}}; 
+    let sound={{sound|tojson}}; 
+    let letter={{letter|tojson}}; 
 </script>
 
 <script type="text/javascript" src="{{ url_for('static', filename = 'learn.js') }}"></script>
 
 
-<div>
-    learn type b
+<div class="row">
+    <div class="col-md-12">
+        <h3> What letter is this? </h3>
+        <h1> {{code}}
+        <audio src = {{sound}} controls>
+        </audio>
+        </h1>
+    </div>
 </div>
 <div class="row">
-    <div>
-        {{id}}/7
+    <div class="col-md-2">
+        <h1><button type="button">{{letter}}</button></h1>
     </div>
+    <div class="col-md-2">
+        <h1><button type="button"> N </button><h1>
+    </div>
+    <div class="col-md-2">
+        <h1><button type="button">T </button><h1>
+    </div>
+    <div class="col-md-2">
+        <h1><button type="button">O</button><h1>
+    </div>
+    <div class="col-md-4">
+    </div>
+    
+</div>
+<br><br>
+<div class="row">
     <div>
-        <a href = "/learn/{{id}}">
+        <a href = "{{url}}">
             <button class="btn-sm btn-outline-secondary" id="begin">Next</button>
         </a>
     </div>
