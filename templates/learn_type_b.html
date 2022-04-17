@@ -8,7 +8,9 @@
     let url = {{url|tojson}};
     let code= {{code|tojson}}; 
     let sound={{sound|tojson}}; 
-    let letter={{letter|tojson}}; 
+    let letter={{letter|tojson}};
+    let page_id = {{page_id|tojson}};
+
 </script>
 
 <script type="text/javascript" src="{{ url_for('static', filename = 'learn.js') }}"></script>
@@ -43,6 +45,9 @@
 </div>
 <br><br>
 <div class="row">
+    <div>
+        {{page_id}}/10
+    </div>
     <div>
         <a href = "{{url}}">
             <button class="btn-sm btn-outline-secondary" id="begin">Next</button>

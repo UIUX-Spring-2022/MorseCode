@@ -55,17 +55,19 @@ def learn(id):
         sound = letter_sounds[int(id)]["link"]
         code= letter_sounds[int(id)]["code"]
         next_id = int(id)+1
+        page_id = next_id+2
         url= "/learn/" + str(next_id)
         if next_id==8:
             url= "/quiz"
-        return render_template('learn_type_a.html', id=id, letter=letter, sound=sound, code=code, url=url)
+        return render_template('learn_type_a.html', id=id, letter=letter, sound=sound, code=code, url=url, page_id=page_id)
     else:
         letter= letter_sounds[int(id)]["letter"].upper()
         sound = letter_sounds[int(id)]["link"]
         code= letter_sounds[int(id)]["code"]
         next_id = int(id)+1
+        page_id=next_id+2
         url= "/learn/" + str(next_id)
-        return render_template('learn_type_b.html', id=id, letter=letter, sound=sound, code=code, url=url,)
+        return render_template('learn_type_b.html', id=id, letter=letter, sound=sound, code=code, url=url, page_id=page_id)
 # READ HERE
 # learn type a is for slides 4/7 and 6/7 of learn because they're the same format
 # learn type b is for slides 5/7 and 7/7 of learn because they're the same format
