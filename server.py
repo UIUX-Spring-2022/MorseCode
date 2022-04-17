@@ -49,6 +49,7 @@ def learn_letters(id):
 
 @app.route('/learn/<id>')
 def learn(id):
+<<<<<<< HEAD
     global letter_sounds
     if int(id) == 3 or int(id) == 5:
         letter = "A" if int(id) == "3" else "S"
@@ -63,6 +64,13 @@ def learn(id):
 # READ HERE
 # learn type a is for slides 4/7 and 6/7 of learn because they're the same format
 # learn type b is for slides 5/7 and 7/7 of learn because they're the same format
+=======
+    new_id= int(id) +1
+    url = "/learn/"+ str(new_id) 
+    if new_id>8:
+        url="/quiz"
+    return render_template('learn.html', url=url, id=id, letter_sounds=letter_sounds)
+>>>>>>> fad80f6 (added learn pages)
 
 @app.route('/quiz')
 def quiz():
