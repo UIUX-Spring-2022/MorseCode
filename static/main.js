@@ -20,9 +20,13 @@ function soundSeqQuestion(){
     return {
         "prompt": "Listen Here.",
         "instructions": "Tap the buttons below to write out the sequence",
-        "answer": letter["letter"],
+        "answer": letter["code"].replace(/\s/g, ''),
         "data": letter,
         "type": "soundSeq",
+        "state": {
+            "index": 0,
+            "input": ""
+        }
     };
 }
 function letterSeqQuestion() {
@@ -57,7 +61,6 @@ function guessWordQuestion() {
         "data": word
     };
 }
-
 function displayQuestion(question) {
     let {type} = question
     console.log(question);
@@ -82,13 +85,13 @@ function displaySoundSeq(question) {
     $('#upper-row').append(`<div><h1>${question["prompt"]}</h1><audio controls src="${question["data"]["link"]}"></div>`);
     $('#middle-row').append(createDashButton());
     $('#middle-row').append(createDotButton());
-    $('.dash-btn, .dot-btn').click(checkAnswer);
+    $('.dash-btn, .dot-btn').click(checkSeq);
 }
 function createDashButton(){
-    return `<div><button class="dash-btn">DASH<div><div></button></div>`;
+    return `<div><button class="dash-btn" val="_">DASH<div><div></button></div>`;
 }
 function createDotButton() {
-    return `<div><button class="dot-btn"><div>DOT<div></button></div>`;
+    return `<div><button class="dot-btn" val="."><div>DOT<div></button></div>`;
 }
 function displayLetterSeq(question) {
     $('#upper-row').append(`<div><h1>${question["prompt"]}</h1></div><div class="col-md-12"></div><div class=""><h1>${question["data"]["code"]}</h1>
@@ -148,32 +151,40 @@ function displayGuessWord(question){
     buttons.push(letter_ind);
     buttons = fillButtonArray(8, buttons);
 }
-
-function checkAnswer() {
-    console.log("clicked");
-    let {type} = question
-    switch(type) {
-        case "soundSeq":
-            checkSeq();
-            break;
-        case "letterSeq":
-            checkLetter();
-        default:
-            throw new Error("check fell to default");
-    }
-}
 function checkSeq() {
-    console.log("hello")
+   let code = $(this).attr('val');
+   let {state, answer} = question;
+   state["input"] += code + " ";
+   if(code === answer[state["index"]]) {
+       if(state["index"] === answer.length -1) {
+            $('.dash-btn, .dot-btn').prop("disabled", true);
+            createFeedback(true, "Correct!");
+            sendJsonRequest(true);
+       } else {
+           state["index"] += 1;
+           question["state"] = state;
+       }
+   } else {
+       $('.dash-btn, .dot-btn').prop("disabled", true);
+       createFeedback(false, `Not quite! you tapped sequence "${state["input"]}". The answer is ${question["answer"]}`);
+       sendJsonRequest(false);
+   }
 }
 function checkLetter(){
     let btn_letter = $(this).attr('letter')
-    console.log(btn_letter);
-    sendJsonRequest()
+    if(btn_letter === question['answer']) {
+        createFeedback(true, "Correct!");
+        $('.letter-btn').prop("disabled", true);
+        sendJsonRequest(true);
+    } else {
+        sendJsonRequest(false);
+        $('.letter-btn').prop("disabled", true);
+        createFeedback(false, `Not quite! you selected "${btn_letter}". The answer is ${question["answer"]}`);
+    }
 }
 function displayResults(result){
     $('#upper-row').append(endingBanner(result))
 }
-
 function endingBanner(result){
     let messages = [
         "This can definitely be hard! Keep trying!",
@@ -210,9 +221,12 @@ function getRandomInt(max) {
 }
 function generateNextButton(id) {
     if (id === 7) {
-    $('#button-col').append(`<a href="/end" class="btn btn-warning btn-large" role="button">Finish</a>`)
-
+        $('#button-col').append(`<a href="/end" class="btn btn-warning btn-large" role="button">Finish</a>`);
     } else {
         $('#button-col').append(`<a href="/question/${id + 1}" class="btn btn-warning btn-large" role="button">Next</a>`)
     }
+}
+function createFeedback(answer, message) {
+    $('#feedback').text(message);
+    $('#feedback').addClass(function() {return answer ? 'text-success' : 'text-danger'});
 }

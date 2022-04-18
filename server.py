@@ -95,6 +95,7 @@ def question(id):
 def update():
     global results
     answer = request.get_json()
+    print(answer)
     results.append(answer)
 
     return jsonify(score=get_score())

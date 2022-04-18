@@ -7,8 +7,9 @@
     const id = JSON.parse('{{ id|tojson }}');
     const letters = JSON.parse('{{ letters|tojson }}');
     const words = JSON.parse('{{ words|tojson }}');
+    let question = null;
     $(document).ready(function() {
-        let question = generateQuestion();
+        question = generateQuestion();
         displayQuestion(question);
         generateNextButton(id);
     });
@@ -17,6 +18,7 @@
 <div class="row justify-content-center" id="upper-row">
 
 </div>
+<div class="row" id="feedback"></div>
 <div class="row justify-content-center" id="middle-row">
 
 </div>
