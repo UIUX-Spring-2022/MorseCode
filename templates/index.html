@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+
+{% block content %} 
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'welcome.js') }}"></script>
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <h1>Learn Morse Code</h1>
+            <div>
+                Learn to encode words and letters in a system of dashes and dots
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center flex-nowrap">
+        <span class="dot"></span>
+        <span class="dash"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dash"></span>
+    </div>
+    <div class="row flex-row-reverse">
+        <a href = "/about">
+        <button class="btn-sm btn-outline-secondary" id="begin">Begin</button>
+        </a>
+    </div>
+{% endblock %}

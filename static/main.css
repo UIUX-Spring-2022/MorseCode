@@ -1,3 +1,10 @@
+@import "./components/morsecode.css";
+
+body {
+    background-color: #6fa8dcff;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 .header_welcome{
     size: 50px;
     margin-left: 50px;
@@ -7,14 +14,13 @@
     size: 30px;
     margin-left: 50px;
 }
-body {
-    background-color: #6fa8dcff;
-    color: white;
-}
 
 .navbar-light .navbar-brand {
     color: white;
 }
 .navbar-light .navbar-nav .nav-link {
     color: white;
+}
+.row {
+    margin-bottom: 50px;
 }

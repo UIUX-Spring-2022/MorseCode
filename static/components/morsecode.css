@@ -1,0 +1,27 @@
+.semi-dot {
+    height: 100px;
+    width: 250px;
+    border-radius: 200px 200px 0 0;
+    background-color: white;
+    margin-right: 25px;
+    transform: rotate(90deg);
+}
+.dot {
+    height: 200px;
+    width: 250px;
+    border-radius: 50%;
+    background-color: white;
+    margin-right: 25px;
+    margin-left: 25px;
+}
+.dash {
+    height: 100px;
+    width: 300px;
+    background-color: white;
+    margin-right: 25px;
+    margin-left: 25px;
+}
+.no-pad-mar {
+    padding: 0;
+    margin: 0;
+}
