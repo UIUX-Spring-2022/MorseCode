@@ -10,6 +10,7 @@
     let url = {{url|tojson}};
     let code={{code|tojson}};
     let page_id={{page_id|tojson}};
+    let prev_url = {{prev_url|tojson}};
 
    
 </script>
@@ -48,10 +49,14 @@
 </div>
 <br><br>
 <div class="row">
-    <div>
+    <div class="col-md-6">
         {{page_id}}/10
+        <a href = "{{prev_url}}">
+            <button class="btn-sm btn-outline-secondary" id="begin">Previous</button>
+        </a>
+
     </div>
-    <div>
+    <div class="col-md-6">
         <a href = "{{url}}">
             <button class="btn-sm btn-outline-secondary" id="begin">Next</button>
         </a>

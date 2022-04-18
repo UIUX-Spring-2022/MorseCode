@@ -1,6 +1,5 @@
-let indexOfSeq = 0;
 function generateQuestion(){
-    let random_num = getRandomInt(2);
+    let random_num = getRandomInt(4);
     console.log(random_num);
     switch(random_num) {
         case 0:
@@ -42,23 +41,30 @@ function letterSeqQuestion() {
 function guessLetterQuestion() {
     let letter = letters[getRandomInt(8)]
     return {
-        "prompt": "",
+        "prompt": letter["letter"],
         "instructions": "Tap the buttons below to write out the sequence for the corresponding letter.",
-        "answer": letter["code"],
+        "answer": letter["code"].replace(/\s/g, ''),
         "audio": letter["link"],
-        "type": "letterGuess"
+        "type": "letterGuess",
+        "state": {
+            "index": 0,
+            "input": ""
+        }
     };
 }
 function guessWordQuestion() {
     let word = words[getRandomInt(3)];
-    let seq = word[1];
     return {
         "prompt": "What word is this?",
         "instructions": "Tap the buttons below to write out the sequence for the corresponding word",
-        "answer": seq,
+        "answer": word[0],
         "audio": "",
         "type": "wordGuess",
-        "data": word
+        "data": word,
+        "state": {
+            "index": 0,
+            "input": ""
+        }
     };
 }
 function displayQuestion(question) {
@@ -100,7 +106,7 @@ function displayLetterSeq(question) {
     let letter_ind = letters.indexOf(question["data"])
     buttons.push(letter_ind);
     buttons = fillButtonArray(4, buttons);
-    generateLetterButtons(buttons);
+    generateLetterButtons(buttons, checkLetter);
 }
 function fillButtonArray(len, buttons) {
     while (buttons.length < len) {
@@ -129,27 +135,25 @@ function shuffle(array) {
   
     return array;
   }
-function generateLetterButtons(buttons) {
+function generateLetterButtons(buttons, func) {
     console.log(buttons)
     for(let button of buttons) {
         let letter = letters[button]
-        console.log(letter);
         $('#middle-row').append(`<div><button class="letter-btn" letter=${letter["letter"]}><div>${letter["letter"]}<div></button></div>`);
     }
-    $('.letter-btn').click(checkLetter);
+    $('.letter-btn').click(func);
 }
 function displayGuessLetter(question){
-    $('#upper-row').append(`<div><h1>${question["prompt"]}</h1></div><div class="col-md-12"></div><div class=""><h1>${question["data"]["code"]}</h1>
-    <audio controls src="${question["data"]["link"]}"></div>`);
+    $('#upper-row').append(`<div><h1>${question["prompt"]}</h1></div><div class="col-md-12"></div><div class=""><h6>${question["instructions"]}</h6>`);
+    $('#middle-row').append(createDashButton());
+    $('#middle-row').append(createDotButton());
+    $('.dash-btn, .dot-btn').click(checkSeq);
 }
 function displayGuessWord(question){
-    $('#upper-row').append(`<div><h1>${question["prompt"]}</h1></div><div class="col-md-12"></div><div class=""><h1>${question["data"][2]}</h1>
-    <audio controls src="${question["data"]["link"]}"></div>`);
-    let buttons = []
-    let letter_ind = letters.indexOf(question["data"]);
-
-    buttons.push(letter_ind);
+    $('#upper-row').append(`<div><h1>${question["prompt"]}</h1></div><div class="col-md-12"></div><div class=""><h1>${question["data"][1].join('  ')}</h1></div>`);
+    let buttons = [...question["data"][2]]
     buttons = fillButtonArray(8, buttons);
+    generateLetterButtons(buttons, checkWord);
 }
 function checkSeq() {
    let code = $(this).attr('val');
@@ -180,6 +184,25 @@ function checkLetter(){
         sendJsonRequest(false);
         $('.letter-btn').prop("disabled", true);
         createFeedback(false, `Not quite! you selected "${btn_letter}". The answer is ${question["answer"]}`);
+    }
+}
+function checkWord(){
+    let letter = $(this).attr('letter');
+    let {state, answer} = question;
+    state["input"] += letter + " ";
+    if(letter === answer[state["index"]]) {
+        if(state["index"] === answer.length -1) {
+             $('.letter-btn').prop("disabled", true);
+             createFeedback(true, "Correct!");
+             sendJsonRequest(true);
+        } else {
+            state["index"] += 1;
+            question["state"] = state;
+        }
+    } else {
+        $('.letter-btn').prop("disabled", true);
+        createFeedback(false, `Not quite! you clicked "${state["input"]}". The answer is ${question["answer"]}`);
+        sendJsonRequest(false);
     }
 }
 function displayResults(result){

@@ -54,8 +54,9 @@ def learn_letters(id):
             codes.append(x['code'])
     id = int(id)+1 #add one
     id = str(id) #back to string
-    url = "/learn_letters/2" if id == "2" else "/learn/1"
-    return render_template('learn_letters.html', learn_combos=lesson, files=files, id=id, url=url, codes=codes)
+    url = "/learn_letters/2" if id == "2" else "/learn/0"
+    prev_url= "/learn_letters/1" if id=="3" else "/about"
+    return render_template('learn_letters.html', learn_combos=lesson, files=files, id=id, url=url, codes=codes, prev_url=prev_url)
 
 @app.route('/learn/<id>')
 def learn(id):
@@ -67,9 +68,11 @@ def learn(id):
         next_id = int(id)+1
         page_id = next_id+2
         url= "/learn/" + str(next_id)
+        prev_id= int(id)-1
+        prev_url= "/learn/" + str(prev_id)
         if next_id==8:
             url= "/quiz"
-        return render_template('learn_type_a.html', id=id, letter=letter, sound=sound, code=code, url=url, page_id=page_id)
+        return render_template('learn_type_a.html', id=id, letter=letter, sound=sound, code=code, url=url, page_id=page_id, prev_url=prev_url) 
     else:
         letter= letter_sounds[int(id)]["letter"].upper()
         sound = letter_sounds[int(id)]["link"]
@@ -77,7 +80,11 @@ def learn(id):
         next_id = int(id)+1
         page_id=next_id+2
         url= "/learn/" + str(next_id)
-        return render_template('learn_type_b.html', id=id, letter=letter, sound=sound, code=code, url=url, page_id=page_id)
+        prev_id= int(id)-1
+        prev_url= "/learn/" + str(prev_id)
+        if prev_id==-1:
+            prev_url="/learn_letters/2"
+        return render_template('learn_type_b.html', id=id, letter=letter, sound=sound, code=code, url=url, page_id=page_id, prev_url=prev_url)
 # READ HERE
 # learn type a is for slides 4/7 and 6/7 of learn because they're the same format
 # learn type b is for slides 5/7 and 7/7 of learn because they're the same format
@@ -104,6 +111,7 @@ def update():
 def end():
     global results
     result = get_score()
+    results = []
     return render_template('end.html', result=result)
 
 if __name__ == '__main__':

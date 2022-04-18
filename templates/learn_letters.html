@@ -9,6 +9,7 @@
     let id = {{id|tojson}};
     let url = {{url|tojson}};
     let codes = {{codes|tojson}};
+    let prev_url = {{prev_url|tojson}};
 
     console.log(url)
 
@@ -65,13 +66,18 @@
     </div>
 </div>
 <div class="row">
-    <div>
+    <div class="col-md-6">
         {{id}}/10
+        <a href = "{{prev_url}}">
+            <button class="btn-sm btn-outline-secondary" id="begin">Previous</button>
+        </a>
+
     </div>
-    <div>
-        <a href = {{url}}>
+    <div class="col-md-6">
+        <a href = "{{url}}">
             <button class="btn-sm btn-outline-secondary" id="begin">Next</button>
         </a>
     </div>
 </div>
+
 {% endblock %}
