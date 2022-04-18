@@ -25,3 +25,24 @@
     padding: 0;
     margin: 0;
 }
+
+.dash-btn{
+    width: 250px;
+    height: 75px;
+    background: linear-gradient(#ffffff, #ccccccff);
+    margin: 20px;
+}
+.dot-btn {
+    width: 250px;
+    height: 75px;
+    background: linear-gradient(#ffffff, #ccccccff);
+    margin: 20px;
+}
+.letter-btn {
+    height: 100px;
+    width: 150px;
+    border-radius: 50%;
+    background-color: white;
+    margin-right: 25px;
+    margin-left: 25px;
+}

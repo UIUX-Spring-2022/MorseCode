@@ -2,15 +2,31 @@
 
 
 {% block content %} 
-<div class="row">
-    <div class="col-md-8 offset-md-2">
-        <div class="row"></div>
-        <div class="row"></div>
-        <div class="row">
-        </div>
+
+<script>
+    const id = JSON.parse('{{ id|tojson }}');
+    const letters = JSON.parse('{{ letters|tojson }}');
+    const words = JSON.parse('{{ words|tojson }}');
+    let question = null;
+    $(document).ready(function() {
+        question = generateQuestion();
+        displayQuestion(question);
+        generateNextButton(id);
+    });
+</script>
+
+<div class="row justify-content-center" id="upper-row">
+
+</div>
+<div class="row" id="feedback"></div>
+<div class="row justify-content-center" id="middle-row">
+
+</div>
+<div class="row" id="lower-row">
+    <div class="col-md-10">
+
     </div>
-    <div class="col md-2">
-        
+    <div class="col-md-2" id="button-col">
     </div>
 </div>
 {% endblock %}
