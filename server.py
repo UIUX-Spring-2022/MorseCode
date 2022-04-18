@@ -52,11 +52,12 @@ def learn_letters(id):
         letter= x['letter'].upper()
         if letter in lesson:
             codes.append(x['code'])
+    page=int(id)
     id = int(id)+1 #add one
     id = str(id) #back to string
     url = "/learn_letters/2" if id == "2" else "/learn/0"
     prev_url= "/learn_letters/1" if id=="3" else "/about"
-    return render_template('learn_letters.html', learn_combos=lesson, files=files, id=id, url=url, codes=codes, prev_url=prev_url)
+    return render_template('learn_letters.html', learn_combos=lesson, files=files, id=id, url=url, codes=codes, prev_url=prev_url, page=page)
 
 @app.route('/learn/<id>')
 def learn(id):
