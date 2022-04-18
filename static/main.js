@@ -1,5 +1,6 @@
+let indexOfSeq = 0;
 function generateQuestion(){
-    let random_num = getRandomInt(4);
+    let random_num = getRandomInt(2);
     console.log(random_num);
     switch(random_num) {
         case 0:
@@ -105,7 +106,7 @@ function fillButtonArray(len, buttons) {
             buttons.push(random_num);
         }
     }
-    buttons = shuffle(buttons);
+    return shuffle(buttons);
 }
 function shuffle(array) {
     /* Fisher Yates Shuffle https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array */
@@ -132,7 +133,7 @@ function generateLetterButtons(buttons) {
         console.log(letter);
         $('#middle-row').append(`<div><button class="letter-btn" letter=${letter["letter"]}><div>${letter["letter"]}<div></button></div>`);
     }
-    $('.letter-btn').click(checkAnswer);
+    $('.letter-btn').click(checkLetter);
 }
 function displayGuessLetter(question){
     $('#upper-row').append(`<div><h1>${question["prompt"]}</h1></div><div class="col-md-12"></div><div class=""><h1>${question["data"]["code"]}</h1>
@@ -148,10 +149,27 @@ function displayGuessWord(question){
     buttons = fillButtonArray(8, buttons);
 }
 
-function checkAnswer(){
+function checkAnswer() {
     console.log("clicked");
+    let {type} = question
+    switch(type) {
+        case "soundSeq":
+            checkSeq();
+            break;
+        case "letterSeq":
+            checkLetter();
+        default:
+            throw new Error("check fell to default");
+    }
 }
-
+function checkSeq() {
+    console.log("hello")
+}
+function checkLetter(){
+    let btn_letter = $(this).attr('letter')
+    console.log(btn_letter);
+    sendJsonRequest()
+}
 function displayResults(result){
     $('#upper-row').append(endingBanner(result))
 }

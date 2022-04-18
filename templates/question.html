@@ -4,9 +4,9 @@
 {% block content %} 
 
 <script>
-    let id = JSON.parse('{{ id|tojson }}');
-    let letters = JSON.parse('{{ letters|tojson }}');
-    let words = JSON.parse('{{ words|tojson }}');
+    const id = JSON.parse('{{ id|tojson }}');
+    const letters = JSON.parse('{{ letters|tojson }}');
+    const words = JSON.parse('{{ words|tojson }}');
     $(document).ready(function() {
         let question = generateQuestion();
         displayQuestion(question);
