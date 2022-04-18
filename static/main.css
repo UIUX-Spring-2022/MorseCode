@@ -24,3 +24,6 @@ body {
 .row {
     margin-bottom: 50px;
 }
+.test-banner {
+    font-size: 3rem;
+}

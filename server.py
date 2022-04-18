@@ -30,11 +30,7 @@ def about():
 def learn_letters(id):
     global learn_combos, learn_combos_2
     lesson = learn_combos if id == 1 else learn_combos_2
-    return render_template('learn_letters_1.html', learn_combos=lesson)
-
-@app.route('/learn/<id>')
-def learn(id):
-    return render_template('learn.html', id=id)
+    return render_template('learn.html', learn_combos=lesson)
 
 @app.route('/quiz')
 def quiz():
