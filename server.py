@@ -13,6 +13,7 @@ data_json = os.path.join(app.static_folder, 'data.json')
 with open(data_json) as morse_data:
     data = json.load(morse_data)
     letter_sounds = data["sounds"]
+    words = data["words"]
 
 learn_combos= ["A", "E", "M", "S"]
 
@@ -23,6 +24,14 @@ learn_combos_2 = ["I","N","T","O"]
 sounds_2 = [letter_sounds[2]["link"],letter_sounds[5]["link"],letter_sounds[7]["link"],letter_sounds[3]["link"]]
 
 results = []
+
+def get_score():
+    global results
+    score = 0
+    for answer in results:
+        if answer:
+            score += 1
+    return score
 
 @app.route('/')
 def welcome():
@@ -79,23 +88,21 @@ def quiz():
 
 @app.route('/question/<id>')
 def question(id):
-    global results, letter_sounds
-    return render_template('question.html', letters=letter_sounds, results=results, id=id)
+    global letter_sounds, words
+    return render_template('question.html', letters=letter_sounds, words=words, id=id)
 
 @app.route('/update', methods=['POST'])
 def update():
     global results
-    answer = request.get_json()["result"]
+    answer = request.get_json()
     results.append(answer)
-    return None
+
+    return jsonify(score=get_score())
 
 @app.route('/end')
 def end():
     global results
-    result = 0
-    for answer in results:
-        if answer:
-            result += 1
+    result = get_score()
     return render_template('end.html', result=result)
 
 if __name__ == '__main__':

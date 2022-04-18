@@ -61,5 +61,10 @@
             "link": "https://upload.wikimedia.org/wikipedia/commons/b/ba/T_morse_code.ogg",
             "description": "Morse code audio file for the letter 't' "
         }
+    ],
+    "words": [
+        {"eat": [".", "._", "_"]},
+        {"sos": ["...", "___", "..."]},
+        {"stem": ["...", "_", ".", "__"]}
     ]
 }
