@@ -89,7 +89,7 @@ def quiz():
 @app.route('/question/<id>')
 def question(id):
     global letter_sounds, words
-    return render_template('question.html', letters=letter_sounds, words=words, id=id)
+    return render_template('question.html', letters=letter_sounds, words=words, id=int(id))
 
 @app.route('/update', methods=['POST'])
 def update():

@@ -22,7 +22,7 @@
         {
             "id": 3,
             "letter": "m",
-            "code":"__",
+            "code":"_ _",
             "link": "https://upload.wikimedia.org/wikipedia/commons/9/97/M_morse_code.ogg",
             "description": "Morse code audio file for the letter 'm' "
         },
@@ -43,7 +43,7 @@
         {
             "id": 6,
             "letter": "o",
-            "code":"___",
+            "code":"_ _ _",
             "link": "https://upload.wikimedia.org/wikipedia/commons/4/41/O_morse_code.ogg",
             "description": "Morse code audio file for the letter 'o' "
         },
@@ -63,8 +63,8 @@
         }
     ],
     "words": [
-        {"eat": [".", "._", "_"]},
-        {"sos": ["...", "___", "..."]},
-        {"stem": ["...", "_", ".", "__"]}
+        ["eat", [".", "._", "_"], [1, 0, 7] ],
+        ["sos", ["...", "___", "..."], [3, 5] ] ,
+        ["stem", ["...", "_", ".", "__"], [3, 7, 1, 2] ]
     ]
 }

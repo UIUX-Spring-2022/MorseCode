@@ -15,7 +15,7 @@ function generateQuestion(){
     }
 }
 function soundSeqQuestion(){
-    let letter = letters[getRandomInt(8) + 1]
+    let letter = letters[getRandomInt(8)]
     return {
         "prompt": "Listen Here.",
         "instructions": "Tap the buttons below to write out the sequence",
@@ -25,7 +25,7 @@ function soundSeqQuestion(){
     };
 }
 function letterSeqQuestion() {
-    let letter = letters[getRandomInt(8) + 1]
+    let letter = letters[getRandomInt(8)]
     return {
         "prompt": "What letter is this?",
         "instructions": "",
@@ -35,28 +35,31 @@ function letterSeqQuestion() {
     };
 }
 function guessLetterQuestion() {
-    let letter = letters[getRandomInt(8) + 1]
+    let letter = letters[getRandomInt(8)]
     return {
         "prompt": "",
         "instructions": "Tap the buttons below to write out the sequence for the corresponding letter.",
         "answer": letter["code"],
         "audio": letter["link"],
-        "type": "guessLetter"
+        "type": "letterGuess"
     };
 }
 function guessWordQuestion() {
-    let word = words[getRandomInt(8) + 1]
+    let word = words[getRandomInt(3)];
+    let seq = word[1];
     return {
         "prompt": "What word is this?",
         "instructions": "Tap the buttons below to write out the sequence for the corresponding word",
-        "answer": word,
+        "answer": seq,
         "audio": "",
-        "type": "wordGuess"
+        "type": "wordGuess",
+        "data": word
     };
 }
 
 function displayQuestion(question) {
     let {type} = question
+    console.log(question);
     switch(type){
         case "soundSeq":
             displaySoundSeq(question);
@@ -64,10 +67,10 @@ function displayQuestion(question) {
         case "letterSeq":
             displayLetterSeq(question);
             break;
-        case "guessLetter":
+        case "letterGuess":
             displayGuessLetter(question);
             break;
-        case "guessWord":
+        case "wordGuess":
             displayGuessWord(question);
             break;
         default:
@@ -75,25 +78,74 @@ function displayQuestion(question) {
     }
 }
 function displaySoundSeq(question) {
-    $('#upper-row').append(`<div><h1>${question["prompt"]}</h1><audio controls src="${question["data"]["link"]}"></div>`)
+    $('#upper-row').append(`<div><h1>${question["prompt"]}</h1><audio controls src="${question["data"]["link"]}"></div>`);
     $('#middle-row').append(createDashButton());
     $('#middle-row').append(createDotButton());
     $('.dash-btn, .dot-btn').click(checkAnswer);
 }
 function createDashButton(){
-    return `<div><button class="dash-btn">DASH<div><div></button></div>`
+    return `<div><button class="dash-btn">DASH<div><div></button></div>`;
 }
 function createDotButton() {
-    return `<div><button class="dot-btn"><div>DOT<div></button></div>`
+    return `<div><button class="dot-btn"><div>DOT<div></button></div>`;
 }
 function displayLetterSeq(question) {
-
+    $('#upper-row').append(`<div><h1>${question["prompt"]}</h1></div><div class="col-md-12"></div><div class=""><h1>${question["data"]["code"]}</h1>
+                            <audio controls src="${question["data"]["link"]}"></div>`);
+    let buttons = []
+    let letter_ind = letters.indexOf(question["data"])
+    buttons.push(letter_ind);
+    buttons = fillButtonArray(4, buttons);
+    generateLetterButtons(buttons);
+}
+function fillButtonArray(len, buttons) {
+    while (buttons.length < len) {
+        let random_num = getRandomInt(8)
+        if (!buttons.includes(random_num)) {
+            buttons.push(random_num);
+        }
+    }
+    buttons = shuffle(buttons);
+}
+function shuffle(array) {
+    /* Fisher Yates Shuffle https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array */
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
+function generateLetterButtons(buttons) {
+    console.log(buttons)
+    for(let button of buttons) {
+        let letter = letters[button]
+        console.log(letter);
+        $('#middle-row').append(`<div><button class="letter-btn" letter=${letter["letter"]}><div>${letter["letter"]}<div></button></div>`);
+    }
+    $('.letter-btn').click(checkAnswer);
 }
 function displayGuessLetter(question){
-
+    $('#upper-row').append(`<div><h1>${question["prompt"]}</h1></div><div class="col-md-12"></div><div class=""><h1>${question["data"]["code"]}</h1>
+    <audio controls src="${question["data"]["link"]}"></div>`);
 }
 function displayGuessWord(question){
+    $('#upper-row').append(`<div><h1>${question["prompt"]}</h1></div><div class="col-md-12"></div><div class=""><h1>${question["data"][2]}</h1>
+    <audio controls src="${question["data"]["link"]}"></div>`);
+    let buttons = []
+    let letter_ind = letters.indexOf(question["data"]);
 
+    buttons.push(letter_ind);
+    buttons = fillButtonArray(8, buttons);
 }
 
 function checkAnswer(){
@@ -137,4 +189,12 @@ function sendJsonRequest(data) {
 }
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
+}
+function generateNextButton(id) {
+    if (id === 7) {
+    $('#button-col').append(`<a href="/end" class="btn btn-warning btn-large" role="button">Finish</a>`)
+
+    } else {
+        $('#button-col').append(`<a href="/question/${id + 1}" class="btn btn-warning btn-large" role="button">Next</a>`)
+    }
 }
