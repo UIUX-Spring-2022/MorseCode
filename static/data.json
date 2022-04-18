@@ -61,10 +61,5 @@
             "link": "https://upload.wikimedia.org/wikipedia/commons/b/ba/T_morse_code.ogg",
             "description": "Morse code audio file for the letter 't' "
         }
-    ],
-    "questions": [
-        {
-            "type": "sequence"
-        }
     ]
 }

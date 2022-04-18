@@ -22,6 +22,7 @@ learn_combos_2 = ["I","N","T","O"]
 
 sounds_2 = [letter_sounds[2]["link"],letter_sounds[5]["link"],letter_sounds[7]["link"],letter_sounds[3]["link"]]
 
+results = []
 
 @app.route('/')
 def welcome():
@@ -78,7 +79,24 @@ def quiz():
 
 @app.route('/question/<id>')
 def question(id):
-    return render_template('question.html', id=id)
+    global results, letter_sounds
+    return render_template('question.html', letters=letter_sounds, results=results, id=id)
+
+@app.route('/update', methods=['POST'])
+def update():
+    global results
+    answer = request.get_json()["result"]
+    results.append(answer)
+    return None
+
+@app.route('/end')
+def end():
+    global results
+    result = 0
+    for answer in results:
+        if answer:
+            result += 1
+    return render_template('end.html', result=result)
 
 if __name__ == '__main__':
    app.run(debug = True)
