@@ -3,33 +3,46 @@
 
 {% block content %} 
 
-<source src="{{ url_for('static', filename='A.mp3') }}" type="audio/mpeg">
-<source src="{{ url_for('static', filename='E.mp3') }}" type="audio/mpeg">
-<source src="{{ url_for('static', filename='M.mp3') }}" type="audio/mpeg">
-<source src="{{ url_for('static', filename='S.mp3') }}" type="audio/mpeg">
-
 <script>
     let learn_combos = {{learn_combos|tojson}};
+    let files = {{files|tojson}};
+    let id = {{id|tojson}};
+    let url = {{url|tojson}};
+    let codes = {{codes|tojson}};
+
+    console.log(url)
+
 
 </script>
 
 <script type="text/javascript" src="{{ url_for('static', filename = 'learn_letters_1.js') }}"></script>
 
+<div class="row">
+    <div class="col-md-12">
+        <h1> For our purposes we'll focus on a few letters for now</h1>
+    </div>
 
-
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h6> Click on each letter to hear its corresponding sound </h6>
+    </div>
+</div>
 <div class = "row">
     <div class = "col-md-6">
         <div class = "letter">
             {{learn_combos[0]}}
+            {{codes[0]}}
         </div>
-        <audio src = 'A.mp3' controls>
+        <audio src = {{files[0]}} controls>
         </audio>
     </div>
     <div class = "col-md-6">
         <div class = "letter">
             {{learn_combos[1]}}
+            {{codes[1]}}
         </div>
-        <audio src = 'E.mp3' controls>
+        <audio src = {{files[1]}} controls>
         </audio>
     </div>
 </div>
@@ -37,21 +50,26 @@
     <div class = "col-md-6">
         <div class = "letter">
             {{learn_combos[2]}}
+            {{codes[2]}}
         </div>
-        <audio src = 'M.mp3' controls>
+        <audio src = {{files[2]}} controls>
         </audio>
     </div>
     <div class = "col-md-6">
         <div class = "letter">
             {{learn_combos[3]}}
+            {{codes[3]}}
         </div>
-        <audio src = 'S.mp3' controls>
+        <audio src = {{files[3]}} controls>
         </audio>
     </div>
 </div>
 <div class="row">
     <div>
-        <a href = "/learn/2">
+        {{id}}/10
+    </div>
+    <div>
+        <a href = {{url}}>
             <button class="btn-sm btn-outline-secondary" id="begin">Next</button>
         </a>
     </div>

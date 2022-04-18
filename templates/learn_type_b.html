@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+
+{% block content %} 
+
+<script>
+    let id = {{id|tojson}};
+    let url = {{url|tojson}};
+    let code= {{code|tojson}}; 
+    let sound={{sound|tojson}}; 
+    let letter={{letter|tojson}};
+    let page_id = {{page_id|tojson}};
+
+</script>
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'learn.js') }}"></script>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h3> What letter is this? </h3>
+        <h1> {{code}}
+        <audio src = {{sound}} controls>
+        </audio>
+        </h1>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<div class="row">
+    <div class="col-md-3">
+        <button type="button" style="width: 250px; font-size: 60px;">{{letter}}</button>
+    </div>
+    <div class="col-md-3">
+        <button type="button" style="width: 250px; font-size: 60px;"> N </button>
+    </div>
+    <div class="col-md-3">
+        <button type="button" style="width: 250px; font-size: 60px;">T </button>
+    </div>
+    <div class="col-md-3">
+        <button type="button" style="width: 250px; font-size: 60px;">O</button>
+    </div>
+    
+</div>
+<br><br>
+<div class="row">
+    <div>
+        {{page_id}}/10
+    </div>
+    <div>
+        <a href = "{{url}}">
+            <button class="btn-sm btn-outline-secondary" id="begin">Next</button>
+        </a>
+    </div>
+</div>
+{% endblock %}

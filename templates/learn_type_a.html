@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+
+{% block content %} 
+
+<script>
+    let id = {{id|tojson}};
+    let letter = {{letter|tojson}};
+    let sound = {{sound|tojson}};
+    let url = {{url|tojson}};
+    let code={{code|tojson}};
+    let page_id={{page_id|tojson}};
+
+   
+</script>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h1> {{letter}} {{code}} </h1>
+    
+        <audio src = {{sound}} controls>
+        </audio>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+       <h3> Tap the buttons to write out the sequence</h3> 
+    </div>
+</div>
+<br><br>
+<div class="row">
+    <div class="col-md-2">
+        <button id = "learn_button" type="button" style="width: 300px; font-size: 60px;">_</button>
+
+    </div>
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-2">  
+        <button type="button" style="width: 300px; font-size: 60px;">.</button>
+
+    </div>
+    <div class="col-md-8">
+       
+
+    </div>
+    
+</div>
+<br><br>
+<div class="row">
+    <div>
+        {{page_id}}/10
+    </div>
+    <div>
+        <a href = "{{url}}">
+            <button class="btn-sm btn-outline-secondary" id="begin">Next</button>
+        </a>
+    </div>
+</div>
+{% endblock %}
