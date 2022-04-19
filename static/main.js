@@ -1,75 +1,46 @@
 function generateQuestion(){
     let random_num = getRandomInt(4);
-    console.log(random_num);
-    switch(random_num) {
+    switch(random_num){
         case 0:
-            return soundSeqQuestion();
+            return createQuesiton("soundSeq");
         case 1:
-            return letterSeqQuestion();
+            return createQuesiton("letterSeq");
         case 2:
-            return guessLetterQuestion();
+            return createQuesiton("guessLetter");
         case 3:
-            return guessWordQuestion();
+            return createQuesiton("guessWord");
         default:
             throw new Error("question generator fell to default");
     }
 }
-function soundSeqQuestion(){
-    let letter = letters[getRandomInt(8)]
-    return {
-        "prompt": "Listen Here.",
-        "instructions": "Tap the buttons below to write out the sequence",
-        "answer": letter["code"].replace(/\s/g, ''),
-        "data": letter,
-        "type": "soundSeq",
-        "state": {
-            "index": 0,
-            "input": ""
-        }
-    };
-}
-function letterSeqQuestion() {
-    let letter = letters[getRandomInt(8)]
-    return {
-        "prompt": "What letter is this?",
-        "instructions": "",
-        "answer": letter["letter"],
-        "data": letter,
-        "type": "letterSeq",
-    };
-}
-function guessLetterQuestion() {
-    let letter = letters[getRandomInt(8)]
-    return {
-        "prompt": letter["letter"],
-        "instructions": "Tap the buttons below to write out the sequence for the corresponding letter.",
-        "answer": letter["code"].replace(/\s/g, ''),
-        "audio": letter["link"],
-        "type": "letterGuess",
-        "state": {
-            "index": 0,
-            "input": ""
-        }
-    };
-}
-function guessWordQuestion() {
+function createQuesiton(type) {
+
+    let letter = letters[getRandomInt(8)];
     let word = words[getRandomInt(3)];
+
+    let question_map = {
+        "soundSeq":    ['Listen Here', 'Tap the buttons below to write out the sequence', letter["code"].replace(/\s/g, ''), letter],
+        "letterSeq":   ['Listen Here', 'Tap the buttons below to write out the sequence', letter["letter"], letter],
+        "guessLetter": [ letter["letter"] , 'Tap the buttons below to write out the sequence for the corresponding letter', letter["code"].replace(/\s/g, ''), letter],
+        "guessWord":   ['What word is this?', 'Tap the buttons below to write out the sequence for the corresponding word', word[0], word]
+    }
+    let [prompt, instructions, answer, data] = question_map[type]
     return {
-        "prompt": "What word is this?",
-        "instructions": "Tap the buttons below to write out the sequence for the corresponding word",
-        "answer": word[0],
-        "audio": "",
-        "type": "wordGuess",
-        "data": word,
+        "prompt": prompt,
+        "instructions": instructions,
+        "answer": answer,
+        "audio": data["link"],
+        "type": type,
+        "data": data,
         "state": {
             "index": 0,
-            "input": ""
+            "input": "",
+            "correct": false,
         }
-    };
+    }
 }
 function displayQuestion(question) {
     let {type} = question
-    console.log(question);
     switch(type){
         case "soundSeq":
             displaySoundSeq(question);
@@ -77,10 +48,10 @@ function displayQuestion(question) {
         case "letterSeq":
             displayLetterSeq(question);
             break;
-        case "letterGuess":
+        case "guessLetter":
             displayGuessLetter(question);
             break;
-        case "wordGuess":
+        case "guessWord":
             displayGuessWord(question);
             break;
         default:
@@ -93,7 +64,7 @@ function displaySoundSeq(question) {
     $('#middle-row').append(createDotButton());
     $('.dash-btn, .dot-btn').click(checkSeq);
 }
-function createDashButton(){
+function createDashButton() {
     return `<div><button class="dash-btn" val="_">DASH<div><div></button></div>`;
 }
 function createDotButton() {
@@ -134,7 +105,7 @@ function shuffle(array) {
     }
   
     return array;
-  }
+}
 function generateLetterButtons(buttons, func) {
     console.log(buttons)
     for(let button of buttons) {
