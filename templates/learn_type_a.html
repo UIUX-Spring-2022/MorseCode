@@ -25,6 +25,10 @@
         });
     });
 
+    function playAudio(url) {
+        new Audio(url).play();
+    }
+
 
    
 </script>
@@ -34,8 +38,7 @@
     <div class="col-md-12">
         <h1> {{letter}} {{code}} </h1>
     
-        <audio src = {{sound}} controls>
-        </audio>
+        <button class="sound-btn" style='font-size:24px' onclick='playAudio(sound)'><i class='fa fa-volume-up'></i></button>
     </div>
 </div>
 <div class="row">

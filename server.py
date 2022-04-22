@@ -17,11 +17,11 @@ with open(data_json) as morse_data:
 
 learn_combos= ["A", "E", "M", "S"]
 
-sounds_1 = [letter_sounds[0]["link"],letter_sounds[1]["link"],letter_sounds[4]["link"],letter_sounds[6]["link"]]
+sounds_1 = [letter_sounds[0]["link"],letter_sounds[1]["link"],letter_sounds[2]["link"],letter_sounds[3]["link"]]
 
-learn_combos_2 = ["I","N","T","O"]
+learn_combos_2 = ["I","O","N","T"]
 
-sounds_2 = [letter_sounds[2]["link"],letter_sounds[5]["link"],letter_sounds[7]["link"],letter_sounds[3]["link"]]
+sounds_2 = [letter_sounds[4]["link"],letter_sounds[5]["link"], letter_sounds[6]["link"],letter_sounds[7]["link"]]
 
 results = []
 
