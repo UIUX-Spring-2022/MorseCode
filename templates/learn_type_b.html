@@ -12,6 +12,13 @@
     let page_id = {{page_id|tojson}};
     let prev_url = {{prev_url|tojson}};
 
+    $(document).ready(function(){
+        $("#option").click(function(){
+            $("#ans").append("The Correct Answer is {{letter}}");
+            $('#option').attr('disabled','disabled');
+        });
+    });
+
 </script>
 
 <script type="text/javascript" src="{{ url_for('static', filename = 'learn.js') }}"></script>
@@ -26,36 +33,37 @@
         </h1>
     </div>
 </div>
-<br>
+<div id="ans">
+</div>
 <br>
 <br>
 <div class="row">
     <div class="col-md-3">
-        <button type="button" style="width: 250px; font-size: 60px;">{{letter}}</button>
+        <button id="option" class="letter-btn">{{letter}}</button>
     </div>
     <div class="col-md-3">
-        <button type="button" style="width: 250px; font-size: 60px;"> N </button>
+        <button id="option" class="letter-btn">N</button>
     </div>
     <div class="col-md-3">
-        <button type="button" style="width: 250px; font-size: 60px;">T </button>
+     <button id="option" class="letter-btn">S</button>
     </div>
     <div class="col-md-3">
-        <button type="button" style="width: 250px; font-size: 60px;">O</button>
+        <button id="option" class="letter-btn">T</button>
     </div>
     
 </div>
 <br><br>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-10">
         {{page_id}}/10
         <a href = "{{prev_url}}">
-            <button class="btn-sm btn-outline-secondary" id="begin">Previous</button>
+            <button class="btn btn-warning btn-large" role="button">Previous</button>
         </a>
 
     </div>
-    <div class="col-md-6">
+    <div class="col-md-2">
         <a href = "{{url}}">
-            <button class="btn-sm btn-outline-secondary" id="begin">Next</button>
+            <button class="btn btn-warning btn-large" role="button" id="next">Next</button>
         </a>
     </div>
 </div>

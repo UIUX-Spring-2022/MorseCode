@@ -12,6 +12,20 @@
     let page_id={{page_id|tojson}};
     let prev_url = {{prev_url|tojson}};
 
+    $(document).ready(function(){
+        $("#dash").click(function(){
+            $("#ans_bubble").append("-")
+        });
+        $("#dot").click(function(){
+            $("#ans_bubble").append(".")
+        });
+        $("#sequence_ans").click(function(){
+            $("#correct_ans").append("The correct answer is {{code}}")
+            $("#ans_bubble").empty()
+        });
+    });
+
+
    
 </script>
 
@@ -29,16 +43,24 @@
        <h3> Tap the buttons to write out the sequence</h3> 
     </div>
 </div>
-<br><br>
+<div class="row">
+    <div id="ans_bubble" class="col-md-6 ans">
+    My answer is:
+    </div>
+    <div class="col-md-2">
+        <button id="sequence_ans">Submit Answer</button>
+    </div>
+</div>
+<div id="correct_ans">
+</div>
 <div class="row">
     <div class="col-md-2">
-        <button id = "learn_button" type="button" style="width: 300px; font-size: 60px;">_</button>
-
+        <div id="dash" class="my_text"><button class="dash-btn" val="_">-</button></div>
     </div>
     <div class="col-md-2">
     </div>
     <div class="col-md-2">  
-        <button type="button" style="width: 300px; font-size: 60px;">.</button>
+        <div id="dot" class="my_text"><button class="dot-btn" val=".">.</button></div>
 
     </div>
     <div class="col-md-8">
@@ -49,16 +71,16 @@
 </div>
 <br><br>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-10">
         {{page_id}}/10
         <a href = "{{prev_url}}">
-            <button class="btn-sm btn-outline-secondary" id="begin">Previous</button>
+            <button class="btn btn-warning btn-large" role="button">Previous</button>
         </a>
 
     </div>
-    <div class="col-md-6">
+    <div class="col-md-2">
         <a href = "{{url}}">
-            <button class="btn-sm btn-outline-secondary" id="begin">Next</button>
+            <button class="btn btn-warning btn-large" role="button" id="next">Next</button>
         </a>
     </div>
 </div>

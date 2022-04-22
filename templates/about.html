@@ -1,5 +1,13 @@
 {% extends "layout.html" %} {% block content %}
 
+<script>
+    $(document).ready(function(){
+      $("#about_link").css({
+        'font-weight':'bold',
+      });
+    });
+  
+</script>
 
 <body>
 <div class="row">
@@ -31,7 +39,7 @@
 
     </div>
     <div class="col-md-2">
-        <a href="/learn_letters/1" class="btn btn-warning btn-large" role="button">Next</a>
+        <a href="/learn_letters/1" class="btn btn-warning btn-large" role="button" id="next">Next</a>
     </div>
 </div>
 </body>
