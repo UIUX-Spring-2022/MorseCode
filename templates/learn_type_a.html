@@ -13,6 +13,7 @@
     let prev_url = {{prev_url|tojson}};
 
     $(document).ready(function(){
+
         $("#dash").click(function(){
             $("#ans_bubble").append("_ ")
         });
@@ -23,16 +24,19 @@
             let text= document.getElementById('ans_bubble').textContent.slice(0, -2)
             $("#ans_bubble").empty()
             $("#ans_bubble").append(text)
-        })
+        });
         $("#sequence_ans").click(function(){
-            $("#correct_ans").append("The correct answer is {{code}}")
             $("#ans_bubble").empty()
+            $(".ans_bub").empty()
+            $(".ans_bub").css('background-color', '#6fa8dcff')
+            $(".ans_bub").append("The correct answer is '{{code}}'")
         });
     });
 
     function playAudio(url) {
         new Audio(url).play();
     }
+
 
 
    
@@ -68,31 +72,31 @@
     </div>
     
 </div>
-<div class="row">
-    <div id="ans_bubble" class="col-md-6 ans">
-    My answer is 
+<hr style="border: 0.5px dashed white;" />
+<div class="row ans_bub">
+    <div id="ans_bubble" class="col-md-5 ans">
+        My answer is  
     </div>
-    <div class="col-md-2">
-        <button id="delete_ans">Delete</button>
+    <div class="col-md-1" id="delete">
+        <button class="btn btn-warning btn-large" id='delete_ans'>Delete</button>
     </div>
-    <div class="col-md-2">
-        <button id="sequence_ans">Submit Answer</button>
+    <div class="col-md-1" id="submit">
+        <button class="btn btn-warning btn-large" id='sequence_ans'>Submit</button>
     </div>
 </div>
-<div id="correct_ans">
-</div>
+<hr style="border: 0.5px dashed white;" />
 <br><br>
 <div class="row">
     <div class="col-md-10">
         {{page_id}}/10
         <a href = "{{prev_url}}">
-            <button class="btn btn-warning btn-large" role="button">Previous</button>
+            <button class="btn btn-warning btn-md" role="button">Previous</button>
         </a>
 
     </div>
     <div class="col-md-2">
         <a href = "{{url}}">
-            <button class="btn btn-warning btn-large" role="button" id="next">Next</button>
+            <button class="btn btn-warning btn-md" role="button" id="next">Next</button>
         </a>
     </div>
 </div>
