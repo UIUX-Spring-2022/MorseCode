@@ -85,7 +85,7 @@ def learn(id):
         prev_url= "/learn/" + str(prev_id)
         if prev_id==-1:
             prev_url="/learn_letters/2"
-        return render_template('learn_type_b.html', id=id, letter=letter, sound=sound, code=code, url=url, page_id=page_id, prev_url=prev_url)
+        return render_template('learn_type_b.html', id=id, letter=letter, sound=sound, code=code, url=url, page_id=page_id, prev_url=prev_url,letter_sounds=letter_sounds)
 # READ HERE
 # learn type a is for slides 4/7 and 6/7 of learn because they're the same format
 # learn type b is for slides 5/7 and 7/7 of learn because they're the same format

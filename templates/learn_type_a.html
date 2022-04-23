@@ -14,11 +14,16 @@
 
     $(document).ready(function(){
         $("#dash").click(function(){
-            $("#ans_bubble").append("-")
+            $("#ans_bubble").append("_ ")
         });
         $("#dot").click(function(){
-            $("#ans_bubble").append(".")
+            $("#ans_bubble").append(". ")
         });
+        $("#delete_ans").click(function(){
+            let text= document.getElementById('ans_bubble').textContent.slice(0, -2)
+            $("#ans_bubble").empty()
+            $("#ans_bubble").append(text)
+        })
         $("#sequence_ans").click(function(){
             $("#correct_ans").append("The correct answer is {{code}}")
             $("#ans_bubble").empty()
@@ -46,19 +51,10 @@
        <h3> Tap the buttons to write out the sequence</h3> 
     </div>
 </div>
-<div class="row">
-    <div id="ans_bubble" class="col-md-6 ans">
-    My answer is:
-    </div>
-    <div class="col-md-2">
-        <button id="sequence_ans">Submit Answer</button>
-    </div>
-</div>
-<div id="correct_ans">
-</div>
+
 <div class="row">
     <div class="col-md-2">
-        <div id="dash" class="my_text"><button class="dash-btn" val="_">-</button></div>
+        <div id="dash" class="my_text"><button class="dash-btn" val="_">_</button></div>
     </div>
     <div class="col-md-2">
     </div>
@@ -71,6 +67,19 @@
 
     </div>
     
+</div>
+<div class="row">
+    <div id="ans_bubble" class="col-md-6 ans">
+    My answer is 
+    </div>
+    <div class="col-md-2">
+        <button id="delete_ans">Delete</button>
+    </div>
+    <div class="col-md-2">
+        <button id="sequence_ans">Submit Answer</button>
+    </div>
+</div>
+<div id="correct_ans">
 </div>
 <br><br>
 <div class="row">

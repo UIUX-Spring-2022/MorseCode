@@ -11,12 +11,75 @@
     let letter={{letter|tojson}};
     let page_id = {{page_id|tojson}};
     let prev_url = {{prev_url|tojson}};
+    let letter_sounds={{letter_sounds| tojson}}
+    let choice1, choice2, choice3
 
     $(document).ready(function(){
-        $("#option").click(function(){
+        $(".letter-btn").click(function(){
+            console.log("clicked")
             $("#ans").append("The Correct Answer is {{letter}}");
             $('#option').attr('disabled','disabled');
         });
+        let answer_button= Math.floor(Math.random() * 4)+1
+        button= "option" + answer_button
+        $('#'+ button).append(letter)
+        option1= document.getElementById("option1").innerHTML
+        option2=document.getElementById("option2").innerHTML
+        option3=document.getElementById("option3").innerHTML
+        option4=document.getElementById("option4").innerHTML
+        let ids_used=[parseInt(id)]
+        if (option1=="")
+        {
+            let random=Math.floor(Math.random() * 8)
+            while (ids_used.includes(random))
+            {
+                random=Math.floor(Math.random() * 8)
+            }
+            ids_used.push(random)
+            $("#option1").append((letter_sounds[random]["letter"]).toUpperCase())
+        }
+        if (option2=="")
+        {
+            let random=Math.floor(Math.random() * 8)
+            while (ids_used.includes(random))
+            {
+                random=Math.floor(Math.random() * 8)
+            }
+            ids_used.push(random)
+            $("#option2").append((letter_sounds[random]["letter"]).toUpperCase())
+
+        }
+        if (option3=="")
+        {
+            let random=Math.floor(Math.random() * 8)
+            while (ids_used.includes(random))
+            {
+                random=Math.floor(Math.random() * 8)
+            }
+            ids_used.push(random)
+            $("#option3").append((letter_sounds[random]["letter"]).toUpperCase())
+
+        }
+        if (option4=="")
+        {
+            let random=Math.floor(Math.random() * 8)
+            while (ids_used.includes(random))
+            {
+                random=Math.floor(Math.random() * 8)
+            }
+            ids_used.push(random)
+            $("#option4").append((letter_sounds[random]["letter"]).toUpperCase())
+        
+            
+
+        }
+        
+            
+    
+
+        
+
+        
     });
 
     function playAudio(url) {
@@ -42,16 +105,16 @@
 <br>
 <div class="row">
     <div class="col-md-3">
-        <button id="option" class="letter-btn">{{letter}}</button>
+        <button id="option1" class="letter-btn"></button>
     </div>
     <div class="col-md-3">
-        <button id="option" class="letter-btn">N</button>
+        <button id="option2" class="letter-btn"></button>
     </div>
     <div class="col-md-3">
-     <button id="option" class="letter-btn">S</button>
+     <button id="option3" class="letter-btn"></button>
     </div>
     <div class="col-md-3">
-        <button id="option" class="letter-btn">T</button>
+        <button id="option4" class="letter-btn"></button>
     </div>
     
 </div>
