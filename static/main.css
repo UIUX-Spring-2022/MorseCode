@@ -60,6 +60,12 @@ body {
 .icon_about_dash{
     font-size: 30px;
 }
+.page{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    
+}
 
 
 
