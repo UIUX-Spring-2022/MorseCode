@@ -31,12 +31,19 @@
     height: 75px;
     background: linear-gradient(#ffffff, #ccccccff);
     margin: 20px;
+    font-size: 30px; 
+    border-radius: 12px;
+    font-weight: 900;
+
 }
 .dot-btn {
     width: 250px;
     height: 75px;
     background: linear-gradient(#ffffff, #ccccccff);
     margin: 20px;
+    font-size: 30px; 
+    border-radius: 12px;
+    font-weight: 900;
 }
 .letter-btn {
     height: 100px;
