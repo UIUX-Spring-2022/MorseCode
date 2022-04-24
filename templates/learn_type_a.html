@@ -3,6 +3,8 @@
 
 {% block content %} 
 
+<script type="text/javascript" src="{{ url_for('static', filename = 'learn_type_a.js') }}"></script>
+
 <script>
     let id = {{id|tojson}};
     let letter = {{letter|tojson}};
@@ -12,35 +14,9 @@
     let page_id={{page_id|tojson}};
     let prev_url = {{prev_url|tojson}};
 
-    $(document).ready(function(){
-
-        $("#dash").click(function(){
-            $("#ans_bubble").append("_ ")
-        });
-        $("#dot").click(function(){
-            $("#ans_bubble").append(". ")
-        });
-        $("#delete_ans").click(function(){
-            let text= document.getElementById('ans_bubble').textContent.slice(0, -2)
-            $("#ans_bubble").empty()
-            $("#ans_bubble").append(text)
-        });
-        $("#sequence_ans").click(function(){
-            $("#ans_bubble").empty()
-            $(".ans_bub").empty()
-            $(".ans_bub").css('background-color', '#6fa8dcff')
-            $(".ans_bub").append("The correct answer is '{{code}}'")
-        });
-    });
-
-    function playAudio(url) {
-        new Audio(url).play();
-    }
-
-
-
    
 </script>
+
 <div class="page">
     {{page_id}}/10  
 </div>
@@ -59,12 +35,12 @@
 
 <div class="row">
     <div class="col-md-2">
-        <button class="dash-btn" val="_"> <p> _ </p></button>
+        <button id="dash" class="dash-btn" val="_"> <p> _ </p></button>
     </div>
     <div class="col-md-2">
     </div>
     <div class="col-md-2">  
-        <button class="dot-btn" val="."><p> . </p></button>
+        <button id="dot" class="dot-btn" val="."><p> . </p></button>
     </div>
     <div class="col-md-8">
 
