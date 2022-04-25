@@ -31,12 +31,19 @@
     height: 75px;
     background: linear-gradient(#ffffff, #ccccccff);
     margin: 20px;
+    font-size: 30px; 
+    border-radius: 12px;
+    font-weight: 900;
+
 }
 .dot-btn {
     width: 250px;
     height: 75px;
     background: linear-gradient(#ffffff, #ccccccff);
     margin: 20px;
+    font-size: 30px; 
+    border-radius: 12px;
+    font-weight: 900;
 }
 .letter-btn {
     height: 100px;
@@ -45,4 +52,26 @@
     background-color: white;
     margin-right: 25px;
     margin-left: 25px;
+}
+
+.sound-btn{
+    height: 50px;
+    width: 70px;
+    border-radius: 50%;
+    background-color: white;
+    margin-right: 25px;
+    margin-left: 25px;
+}
+
+
+#ans_bubble{
+    color: white;
+}
+
+.ans_bub{
+    font-size: 25px;
+}
+
+#ans{
+    font-size: 25px;
 }

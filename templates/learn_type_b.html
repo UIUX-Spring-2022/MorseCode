@@ -3,6 +3,8 @@
 
 {% block content %} 
 
+<script type="text/javascript" src="{{ url_for('static', filename = 'learn_type_b.js') }}"></script>
+
 <script>
     let id = {{id|tojson}};
     let url = {{url|tojson}};
@@ -11,51 +13,57 @@
     let letter={{letter|tojson}};
     let page_id = {{page_id|tojson}};
     let prev_url = {{prev_url|tojson}};
+    let letter_sounds={{letter_sounds| tojson}}
+    let choice1, choice2, choice3
 
 </script>
 
-<script type="text/javascript" src="{{ url_for('static', filename = 'learn.js') }}"></script>
 
-
+<div class="page">
+    {{page_id}}/10  
+</div>
 <div class="row">
     <div class="col-md-12">
         <h3> What letter is this? </h3>
         <h1> {{code}}
-        <audio src = {{sound}} controls>
-        </audio>
+        <button class="sound-btn" style='font-size:24px' onclick='playAudio(sound)'><i class='fa fa-volume-up'></i></button>
         </h1>
     </div>
+   
+    
 </div>
-<br>
+
 <br>
 <br>
 <div class="row">
     <div class="col-md-3">
-        <button type="button" style="width: 250px; font-size: 60px;">{{letter}}</button>
+        <button id="option1" class="letter-btn"></button>
     </div>
     <div class="col-md-3">
-        <button type="button" style="width: 250px; font-size: 60px;"> N </button>
+        <button id="option2" class="letter-btn"></button>
     </div>
     <div class="col-md-3">
-        <button type="button" style="width: 250px; font-size: 60px;">T </button>
+     <button id="option3" class="letter-btn"></button>
     </div>
     <div class="col-md-3">
-        <button type="button" style="width: 250px; font-size: 60px;">O</button>
+        <button id="option4" class="letter-btn"></button>
     </div>
     
 </div>
+<div id="ans">
+</div>
 <br><br>
 <div class="row">
-    <div class="col-md-6">
-        {{page_id}}/10
+    <div class="col-md-10">
+        
         <a href = "{{prev_url}}">
-            <button class="btn-sm btn-outline-secondary" id="begin">Previous</button>
+            <button class="btn btn-warning btn-large" role="button">Previous</button>
         </a>
 
     </div>
-    <div class="col-md-6">
+    <div class="col-md-2">
         <a href = "{{url}}">
-            <button class="btn-sm btn-outline-secondary" id="begin">Next</button>
+            <button class="btn btn-warning btn-large" role="button" id="next">Next</button>
         </a>
     </div>
 </div>

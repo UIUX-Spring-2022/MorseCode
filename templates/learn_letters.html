@@ -12,7 +12,11 @@
     let prev_url = {{prev_url|tojson}};
     let page = {{page|tojson}};
 
-    console.log(url)
+    console.log(learn_combos)
+
+    function playAudio(url) {
+        new Audio(url).play();
+    }
 
 
 </script>
@@ -36,16 +40,14 @@
             {{learn_combos[0]}}
             {{codes[0]}}
         </div>
-        <audio src = {{files[0]}} controls>
-        </audio>
+        <button class="sound-btn" style='font-size:24px' onclick='playAudio(files[0])'><i class='fa fa-volume-up'></i></button>
     </div>
     <div class = "col-md-6">
         <div class = "letter">
             {{learn_combos[1]}}
             {{codes[1]}}
         </div>
-        <audio src = {{files[1]}} controls>
-        </audio>
+        <button class="sound-btn" style='font-size:24px' onclick='playAudio(files[1])'><i class='fa fa-volume-up'></i></button>
     </div>
 </div>
 <div class = "row">
@@ -54,29 +56,27 @@
             {{learn_combos[2]}}
             {{codes[2]}}
         </div>
-        <audio src = {{files[2]}} controls>
-        </audio>
+        <button class="sound-btn" style='font-size:24px;' onclick='playAudio(files[2])'><i class='fa fa-volume-up'></i></button>
     </div>
     <div class = "col-md-6">
         <div class = "letter">
             {{learn_combos[3]}}
             {{codes[3]}}
         </div>
-        <audio src = {{files[3]}} controls>
-        </audio>
+        <button class="sound-btn" style='font-size:24px' onclick='playAudio(files[3])'><i class='fa fa-volume-up'></i></button>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-10">
         {{page}}/10
         <a href = "{{prev_url}}">
-            <button class="btn-sm btn-outline-secondary" id="begin">Previous</button>
+            <button class="btn btn-warning btn-large" role="button">Previous</button>
         </a>
 
     </div>
-    <div class="col-md-6">
+    <div class="col-md-2">
         <a href = "{{url}}">
-            <button class="btn-sm btn-outline-secondary" id="begin">Next</button>
+            <button class="btn btn-warning btn-large" role="button" id="next">Next</button>
         </a>
     </div>
 </div>

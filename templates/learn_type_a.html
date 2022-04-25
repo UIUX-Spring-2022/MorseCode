@@ -3,6 +3,8 @@
 
 {% block content %} 
 
+<script type="text/javascript" src="{{ url_for('static', filename = 'learn_type_a.js') }}"></script>
+
 <script>
     let id = {{id|tojson}};
     let letter = {{letter|tojson}};
@@ -15,13 +17,14 @@
    
 </script>
 
-
+<div class="page">
+    {{page_id}}/10  
+</div>
 <div class="row">
     <div class="col-md-12">
         <h1> {{letter}} {{code}} </h1>
     
-        <audio src = {{sound}} controls>
-        </audio>
+        <button class="sound-btn" style='font-size:24px' onclick='playAudio(sound)'><i class='fa fa-volume-up'></i></button>
     </div>
 </div>
 <div class="row">
@@ -29,36 +32,45 @@
        <h3> Tap the buttons to write out the sequence</h3> 
     </div>
 </div>
-<br><br>
+
 <div class="row">
     <div class="col-md-2">
-        <button id = "learn_button" type="button" style="width: 300px; font-size: 60px;">_</button>
-
+        <button id="dash" class="dash-btn" val="_"> <p> _ </p></button>
     </div>
     <div class="col-md-2">
     </div>
     <div class="col-md-2">  
-        <button type="button" style="width: 300px; font-size: 60px;">.</button>
-
+        <button id="dot" class="dot-btn" val="."><p> . </p></button>
     </div>
     <div class="col-md-8">
-       
 
     </div>
     
 </div>
+<hr style="border: 0.5px dashed white;" />
+<div class="row ans_bub">
+    <div id="ans_bubble" class="col-md-5 ans">
+        My answer is  
+    </div>
+    <div class="col-md-1" id="delete">
+        <button class="btn btn-warning btn-large" id='delete_ans'>Delete</button>
+    </div>
+    <div class="col-md-1" id="submit">
+        <button class="btn btn-warning btn-large" id='sequence_ans'>Submit</button>
+    </div>
+</div>
+<hr style="border: 0.5px dashed white;" />
 <br><br>
 <div class="row">
-    <div class="col-md-6">
-        {{page_id}}/10
+    <div class="col-md-10">
         <a href = "{{prev_url}}">
-            <button class="btn-sm btn-outline-secondary" id="begin">Previous</button>
+            <button class="btn btn-warning btn-md" role="button">Previous</button>
         </a>
 
     </div>
-    <div class="col-md-6">
+    <div class="col-md-2">
         <a href = "{{url}}">
-            <button class="btn-sm btn-outline-secondary" id="begin">Next</button>
+            <button class="btn btn-warning btn-md" role="button" id="next">Next</button>
         </a>
     </div>
 </div>

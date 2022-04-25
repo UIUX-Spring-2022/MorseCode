@@ -17,11 +17,11 @@ with open(data_json) as morse_data:
 
 learn_combos= ["A", "E", "M", "S"]
 
-sounds_1 = [letter_sounds[0]["link"],letter_sounds[1]["link"],letter_sounds[4]["link"],letter_sounds[6]["link"]]
+sounds_1 = [letter_sounds[0]["link"],letter_sounds[1]["link"],letter_sounds[2]["link"],letter_sounds[3]["link"]]
 
-learn_combos_2 = ["I","N","T","O"]
+learn_combos_2 = ["I","O","N","T"]
 
-sounds_2 = [letter_sounds[2]["link"],letter_sounds[5]["link"],letter_sounds[7]["link"],letter_sounds[3]["link"]]
+sounds_2 = [letter_sounds[4]["link"],letter_sounds[5]["link"], letter_sounds[6]["link"],letter_sounds[7]["link"]]
 
 results = []
 
@@ -85,7 +85,7 @@ def learn(id):
         prev_url= "/learn/" + str(prev_id)
         if prev_id==-1:
             prev_url="/learn_letters/2"
-        return render_template('learn_type_b.html', id=id, letter=letter, sound=sound, code=code, url=url, page_id=page_id, prev_url=prev_url)
+        return render_template('learn_type_b.html', id=id, letter=letter, sound=sound, code=code, url=url, page_id=page_id, prev_url=prev_url,letter_sounds=letter_sounds)
 # READ HERE
 # learn type a is for slides 4/7 and 6/7 of learn because they're the same format
 # learn type b is for slides 5/7 and 7/7 of learn because they're the same format

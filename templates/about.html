@@ -1,5 +1,13 @@
 {% extends "layout.html" %} {% block content %}
 
+<script>
+    $(document).ready(function(){
+      $("#about_link").css({
+        'font-weight':'bold',
+      });
+    });
+  
+</script>
 
 <body>
 <div class="row">
@@ -27,11 +35,23 @@
     </div>
   </div>
   <div class="row">
+    <div class="col-md-6">
+      <div>
+        <span>This is a dot: </span>
+        <span class="icon_about">.</span>
+      </div>
+      <div>
+        <span>This is a dash: </span>
+        <span class="icon_about_dash">-</span>
+      </div>   
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-10">
 
     </div>
     <div class="col-md-2">
-        <a href="/learn_letters/1" class="btn btn-warning btn-large" role="button">Next</a>
+        <a href="/learn_letters/1" class="btn btn-warning btn-large" role="button" id="next">Next</a>
     </div>
 </div>
 </body>

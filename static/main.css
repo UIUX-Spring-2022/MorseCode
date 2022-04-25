@@ -3,7 +3,7 @@
 body {
     background-color: #6fa8dcff;
     color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 .header_welcome{
     size: 50px;
@@ -27,3 +27,46 @@ body {
 .test-banner {
     font-size: 3rem;
 }
+
+#begin{
+    background-color: yellow;
+}
+
+.about{
+    font-size: 30px;
+}
+
+#about_link{
+    font-weight: bold;
+}
+
+.letter{
+    font-size: 30px;
+}
+
+
+.my_text{
+    font-size: 50px;
+}
+
+.ans{
+    font-size: 30px;
+}
+
+.icon_about{
+    font-size: 50px;
+}
+
+.icon_about_dash{
+    font-size: 30px;
+}
+.page{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    
+}
+
+
+
+
