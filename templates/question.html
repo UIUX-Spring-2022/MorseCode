@@ -8,10 +8,12 @@
     const letters = JSON.parse('{{ letters|tojson }}');
     const words = JSON.parse('{{ words|tojson }}');
     const quizQuestions = JSON.parse('{{ quiz_questions|tojson}}')
+    const score = JSON.parse('{{ score|tojson}}')
     let question = null;
     $(document).ready(function() {
         question = generateQuestion();
         displayQuestion(question);
+        displayCurrentScore(score, id);
         generateNextButton(id);
     });
 </script>
@@ -27,7 +29,7 @@
 
 </div>
 <div class="row" id="lower-row">
-    <div class="col-md-10">
+    <div class="col-md-10" id="current-score">
 
     </div>
     <div class="col-md-2" id="button-col">

@@ -97,8 +97,9 @@ def quiz():
 
 @app.route('/question/<id>')
 def question(id):
-    global letter_sounds, words
-    return render_template('question.html', letters=letter_sounds, words=words, id=int(id), quiz_questions=quiz_questions)
+    global letter_sounds, words, quiz_questions
+    score = get_score()
+    return render_template('question.html', letters=letter_sounds, words=words, id=int(id), quiz_questions=quiz_questions, score=score)
 
 @app.route('/update', methods=['POST'])
 def update():

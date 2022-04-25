@@ -257,3 +257,8 @@ function createFeedback(answer, message) {
 function playAudio(url) {
     new Audio(url).play();
 }
+function displayCurrentScore(score, page) {
+    if ( page > 1) {
+        $('#current-score').append(`<h3> Current Score  ${score} / ${page - 1} </h3>`)
+    }
+}
