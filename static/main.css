@@ -5,6 +5,9 @@ body {
     color: white;
     font-family: 'Montserrat', sans-serif;
 }
+h6 {
+    margin: 10px;
+}
 .header_welcome{
     size: 50px;
     margin-left: 50px;
@@ -66,7 +69,28 @@ body {
     right: 20px;
     
 }
+.place-hold {
+    height: 100px;
+    width: 100px;
+    background-color: white;
+    margin-right: 25px;
+    margin-left: 25px;
+    border-radius: 25%;
+}
 
-
-
+.small-dot {
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    background-color: white;
+    margin-right: 25px;
+    margin-left: 25px;
+}
+.small-dash {
+    height: 30px;
+    width: 100px;
+    background-color: white;
+    margin-right: 25px;
+    margin-left: 25px;
+}
 

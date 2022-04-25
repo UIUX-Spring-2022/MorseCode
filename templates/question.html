@@ -2,11 +2,12 @@
 
 
 {% block content %} 
-
+<script type="text/javascript" src="../static/quiz.js"></script>
 <script>
     const id = JSON.parse('{{ id|tojson }}');
     const letters = JSON.parse('{{ letters|tojson }}');
     const words = JSON.parse('{{ words|tojson }}');
+    const quizQuestions = JSON.parse('{{ quiz_questions|tojson}}')
     let question = null;
     $(document).ready(function() {
         question = generateQuestion();
@@ -18,7 +19,10 @@
 <div class="row justify-content-center" id="upper-row">
 
 </div>
-<div class="row" id="feedback"></div>
+<div class="row justify-content-center align-items-center" id="place-holder">
+
+</div>
+<div class="row justify-content-center" id="feedback"></div>
 <div class="row justify-content-center" id="middle-row">
 
 </div>

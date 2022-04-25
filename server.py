@@ -24,6 +24,7 @@ learn_combos_2 = ["I","O","N","T"]
 sounds_2 = [letter_sounds[4]["link"],letter_sounds[5]["link"], letter_sounds[6]["link"],letter_sounds[7]["link"]]
 
 results = []
+quiz_questions = []
 
 def get_score():
     global results
@@ -97,22 +98,25 @@ def quiz():
 @app.route('/question/<id>')
 def question(id):
     global letter_sounds, words
-    return render_template('question.html', letters=letter_sounds, words=words, id=int(id))
+    return render_template('question.html', letters=letter_sounds, words=words, id=int(id), quiz_questions=quiz_questions)
 
 @app.route('/update', methods=['POST'])
 def update():
     global results
-    answer = request.get_json()
+    answer, id = itemgetter('answer', 'question_id')(request.get_json())
     print(answer)
+    print(id)
     results.append(answer)
+    quiz_questions.append(id)
 
     return jsonify(score=get_score())
 
 @app.route('/end')
 def end():
-    global results
+    global results, quiz_questions
     result = get_score()
     results = []
+    quiz_questions = []
     return render_template('end.html', result=result)
 
 if __name__ == '__main__':
