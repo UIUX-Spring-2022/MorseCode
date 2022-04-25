@@ -2,18 +2,18 @@ function generateQuestion(){
     let random_num = getRandomInt(4);
     switch(random_num){
         case 0:
-            return createQuesiton(0);
+            return createQuestion(0);
         case 1:
-            return createQuesiton(1);
+            return createQuestion(1);
         case 2:
-            return createQuesiton(2);
+            return createQuestion(2);
         case 3:
-            return createQuesiton(3);
+            return createQuestion(3);
         default:
             throw new Error("question generator fell to default");
     }
 }
-function createQuesiton(code) {
+function createQuestion(code) {
     let types = ["soundSeq", "letterSeq", "guessLetter", "guessWord"]
     let type = types[code];
 
