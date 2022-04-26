@@ -79,10 +79,10 @@ function displaySoundSeq(question) {
     $('.dash-btn, .dot-btn').click(checkSeq);
 }
 function createDashButton() {
-    return `<div><button class="dash-btn" val="_">DASH<div><div></button></div>`;
+    return `<div><button class="dash-btn" val="_">DASH(-)<div><div></button></div>`;
 }
 function createDotButton() {
-    return `<div><button class="dot-btn" val="."><div>DOT<div></button></div>`;
+    return `<div><button class="dot-btn" val="."><div>DOT(·)<div></button></div>`;
 }
 function displayLetterSeq(question) {
     $('#upper-row').append(`<div><h1>${question["prompt"]}</h1></div>

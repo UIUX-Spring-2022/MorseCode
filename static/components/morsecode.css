@@ -29,7 +29,7 @@
 .dash-btn{
     width: 250px;
     height: 75px;
-    background: linear-gradient(#ffffff, #ccccccff);
+    background: white;
     margin: 20px;
     font-size: 30px; 
     border-radius: 12px;
@@ -39,7 +39,7 @@
 .dot-btn {
     width: 250px;
     height: 75px;
-    background: linear-gradient(#ffffff, #ccccccff);
+    background: white;
     margin: 20px;
     font-size: 30px; 
     border-radius: 12px;
