@@ -63,11 +63,10 @@ h6 {
 .icon_about_dash{
     font-size: 30px;
 }
-.page{
+.progress_bar{
     position: absolute;
     top: 20px;
-    right: 20px;
-    
+    right: 20px;  
 }
 .place-hold {
     height: 100px;

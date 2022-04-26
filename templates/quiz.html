@@ -3,6 +3,37 @@
 
 {% block content %} 
 
+<script>
+
+    page_number_quiz = {{page_number_quiz|tojson}};
+
+
+    $(document).ready(function(){
+      update_percentage(page_number_quiz)
+    });
+
+    function update_percentage(page_number_quiz){
+      page_number = page_number_quiz+1
+      page = {
+        "data": page_number,
+      }
+      $.ajax({
+        type: "POST",
+        url: "/update_progress",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(page),
+        success: function(result){
+            let percentage = result["percentage"]
+            console.log(percentage)
+            document.getElementById("file").value = percentage;
+            $("#percent").empty()
+            $("#percent").append(percentage+"%")
+        }
+    });
+    }
+</script>
+
 
 <div class="row">
     <h1 class="test-banner">Now for testing your knowledge...</h1>

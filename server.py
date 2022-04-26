@@ -26,6 +26,9 @@ sounds_2 = [letter_sounds[4]["link"],letter_sounds[5]["link"], letter_sounds[6][
 results = []
 quiz_questions = []
 
+page_number = 0
+page_number_quiz = 11
+
 def get_score():
     global results
     score = 0
@@ -41,7 +44,8 @@ def welcome():
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    global page_number
+    return render_template('about.html', page_number=page_number)
 
 @app.route('/learn_letters/<id>')
 def learn_letters(id):
@@ -93,7 +97,8 @@ def learn(id):
 
 @app.route('/quiz')
 def quiz():
-    return render_template('quiz.html')
+    global page_number_quiz
+    return render_template('quiz.html', page_number_quiz=page_number_quiz)
 
 @app.route('/question/<id>')
 def question(id):
@@ -119,6 +124,16 @@ def end():
     results = []
     quiz_questions = []
     return render_template('end.html', result=result)
+
+@app.route('/update_progress', methods=['GET','POST'])
+def progress_bar():
+    new_page_num = request.get_json()
+    page_num = new_page_num["data"]
+    percent = (page_num) / 20
+    print(percent)
+    #25 = number of pages
+    percentage = percent * 100
+    return jsonify(percentage=percentage)
 
 if __name__ == '__main__':
    app.run(debug = True)
