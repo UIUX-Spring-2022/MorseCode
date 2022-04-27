@@ -1,11 +1,38 @@
 {% extends "layout.html" %} {% block content %}
 
 <script>
+   let page_number = {{page_number|tojson}};
+   console.log(page_number)
+</script>
+
+<script>
+
+
     $(document).ready(function(){
-      $("#about_link").css({
-        'font-weight':'bold',
-      });
+      update_percentage(page_number)
     });
+
+    function update_percentage(page_number){
+      page_number = page_number+1
+      page = {
+        "data": page_number,
+      }
+      $.ajax({
+        type: "POST",
+        url: "update_progress",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(page),
+        success: function(result){
+            let percentage = result["percentage"]
+            console.log(percentage)
+            document.getElementById("file").value = percentage;
+            $("#percent").empty()
+            $("#percent").append(percentage+"%")
+        }
+    });
+  }
+
   
 </script>
 

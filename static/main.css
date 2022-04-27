@@ -63,11 +63,10 @@ h6 {
 .icon_about_dash{
     font-size: 30px;
 }
-.page{
+.progress_bar{
     position: absolute;
     top: 20px;
-    right: 20px;
-    
+    right: 20px;  
 }
 .place-hold {
     height: 100px;
@@ -92,5 +91,31 @@ h6 {
     background-color: white;
     margin-right: 25px;
     margin-left: 25px;
+}
+.learn-dot-symbol{
+    display: inline-block; 
+    height: 25px;
+    width: 25px;
+    border-radius: 160%;
+    background-color: white;
+    margin-right: 8px;
+    margin-left: 8px;
+}
+.learn-dash-symbol{
+    display: inline-block; 
+    height: 10px;
+    width: 33px;
+    background-color: white;
+    margin-right: 8px;
+    margin-left: 8px;
+
+
+}
+#learn-b{
+    text-align: center;
+}
+#learn-a{
+    text-align: center;
+
 }
 

@@ -12,18 +12,41 @@
     let prev_url = {{prev_url|tojson}};
     let page = {{page|tojson}};
 
-    console.log(learn_combos)
 
     function playAudio(url) {
         new Audio(url).play();
     }
+
+    $(document).ready(function(){
+      update_percentage(page)
+    });
+
+    function update_percentage(page){
+      page_number = page+1
+      pg = {
+        "data": page_number,
+      }
+      $.ajax({
+        type: "POST",
+        url: "/update_progress",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(pg),
+        success: function(result){
+            let percentage = result["percentage"]
+            console.log(percentage)
+            document.getElementById("file").value = percentage;
+            $("#percent").empty()
+            $("#percent").append(percentage+"%")
+        }
+    });
+  }
 
 
 </script>
 
 
 <div class="page">
-    {{page}}/10  
 </div>
 <div class="row">
     <div class="col-md-12">

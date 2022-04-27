@@ -14,46 +14,62 @@
     let page_id={{page_id|tojson}};
     let prev_url = {{prev_url|tojson}};
 
+    $(document).ready(function(){
+      update_percentage(page_id)
+    });
+
+    function update_percentage(page_id){
+      page_number = page_id+1
+      page = {
+        "data": page_number,
+      }
+      $.ajax({
+        type: "POST",
+        url: "/update_progress",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(page),
+        success: function(result){
+            let percentage = result["percentage"]
+            console.log(percentage)
+            document.getElementById("file").value = percentage;
+            $("#percent").empty()
+            $("#percent").append(percentage+"%")
+        }
+    });
+  }
+
    
 </script>
-
-<div class="page">
-    {{page_id}}/10  
-</div>
 <div class="row">
-    <div class="col-md-12">
+    <div id= "learn-a" class="col-md-12">
         <h1> {{letter}} {{code}} </h1>
-    
         <button class="sound-btn" style='font-size:24px' onclick='playAudio(sound)'><i class='fa fa-volume-up'></i></button>
+    
     </div>
 </div>
 <div class="row">
-    <div class="col-md-12">
+    <div id= "learn-a" class="col-md-12">
        <h3> Tap the buttons to write out the sequence</h3> 
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-2">
-        <button id="dash" class="dash-btn" val="_"> <p> _ </p></button>
+<div  id= "learn-a" class="row">
+    <div class="col-md-6">
+        <button id="dash-learn" class="dash-btn" val="_">DASH (-)<div><div></button>
     </div>
-    <div class="col-md-2">
-    </div>
-    <div class="col-md-2">  
-        <button id="dot" class="dot-btn" val="."><p> . </p></button>
-    </div>
-    <div class="col-md-8">
-
+    <div class="col-md-6">  
+        <button id="dot-learn" class="dot-btn" val="_">DOT(·)<div><div></button>
     </div>
     
 </div>
-<hr style="border: 0.5px dashed white;" />
+<hr style="border: 0.5px dashed white;"/>
 <div class="row ans_bub">
     <div id="ans_bubble" class="col-md-5 ans">
         My answer is  
     </div>
     <div class="col-md-1" id="delete">
-        <button class="btn btn-warning btn-large" id='delete_ans'>Delete</button>
+        <button class="btn btn-warning btn-large" id='delete_ans'>Reset</button>
     </div>
     <div class="col-md-1" id="submit">
         <button class="btn btn-warning btn-large" id='sequence_ans'>Submit</button>

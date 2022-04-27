@@ -1,10 +1,13 @@
 $(document).ready(function(){
 
-    $("#dash").click(function(){
-        $("#ans_bubble").append("_ ")
+    console.l
+    $("#dash-learn").click(function(){
+        $("#ans_bubble").append('<div class="learn-dash-symbol"> </div>')
+        console.log("clicked")
     });
-    $("#dot").click(function(){
-        $("#ans_bubble").append(". ")
+    $("#dot-learn").click(function(){
+        $("#ans_bubble").append('<div class="learn-dot-symbol"> </div>')
+        console.log("clicked")
     });
     $("#delete_ans").click(function(){
         let text= document.getElementById('ans_bubble').textContent.slice(0, -2)
