@@ -7,8 +7,8 @@
     transform: rotate(90deg);
 }
 .dot {
-    height: 200px;
-    width: 250px;
+    height: 150px;
+    width: 150px;
     border-radius: 50%;
     background-color: white;
     margin-right: 25px;
@@ -16,7 +16,7 @@
 }
 .dash {
     height: 100px;
-    width: 300px;
+    width: 200px;
     background-color: white;
     margin-right: 25px;
     margin-left: 25px;

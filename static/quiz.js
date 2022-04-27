@@ -17,15 +17,15 @@ function createQuestion(code) {
     let types = ["soundSeq", "letterSeq", "guessLetter", "guessWord"]
     let type = types[code];
 
-    let letter_num = getRandomInt(8)
-    let word_num = getRandomInt(3)
+    let letter_num = getRandomInt(8);
+    let word_num = getRandomInt(3);
     let letter = letters[letter_num];
     let word = words[word_num];
     
     let question_id = (code === 3) ? (code * 10) + word_num : (code * 10) + letter_num;
 
     if(quizQuestions.includes(question_id)) {
-        console.log('used question previously')
+        console.log('used question previously');
         generateQuestion();
     }
     let question_map = {
@@ -34,7 +34,7 @@ function createQuestion(code) {
         "guessLetter": [ letter["letter"] , 'Tap the buttons below to write out the sequence for the corresponding letter', letter["code"].replace(/\s/g, ''), letter],
         "guessWord":   ['What word is this?', 'Tap the buttons below to write out the sequence for the corresponding word', word[0], word]
     }
-    let [prompt, instructions, answer, data] = question_map[type]
+    let [prompt, instructions, answer, data] = question_map[type];
     return {
         "question_id": question_id,
         "prompt": prompt,
@@ -51,7 +51,7 @@ function createQuestion(code) {
     }
 }
 function displayQuestion(question) {
-    let {type} = question
+    let {type} = question;
     switch(type){
         case "soundSeq":
             displaySoundSeq(question);
@@ -89,8 +89,8 @@ function displayLetterSeq(question) {
                             <div class="col-md-12"></div><div><button class="sound-btn" style='font-size:24px' onclick='playAudio("${question["data"]["link"]}")'><i class='fa fa-volume-up'></i></button></div>
                             <div class="col-md-12"></div><div><h6>${question["instructions"]}</h6></div>
                             <div class="col-md-12"></div> <div><h1>${question["data"]["code"]}</h1></div>`);
-    let buttons = []
-    let letter_ind = letters.indexOf(question["data"])
+    let buttons = [];
+    let letter_ind = letters.indexOf(question["data"]);
     buttons.push(letter_ind);
     buttons = fillButtonArray(4, buttons);
     generateLetterButtons(buttons, checkLetter);
@@ -152,7 +152,7 @@ function checkSeq() {
    let {state, answer, question_id} = question;
    state["input"] += code + " ";
    if(code === answer[state["index"]]) {
-       if(state["index"] === answer.length -1) {
+       if(state["index"] === answer.length - 1) {
             $('.dash-btn, .dot-btn').prop("disabled", true);
             $(`#placehold-${state["index"]}`).removeClass('place-hold').addClass(code === '.' ? 'small-dot' : 'small-dash');
             createFeedback(true, "Correct!");
@@ -166,7 +166,7 @@ function checkSeq() {
        }
    } else {
        $('.dash-btn, .dot-btn').prop("disabled", true);
-       createFeedback(false, `Not quite! you tapped sequence "${state["input"]}". The answer is ${question["answer"].split('').join(' ')}`);
+       createFeedback(false, `Not quite! you tapped sequence "${state["input"]}".\nThe answer is ${question["answer"].split('').join(' ')}`);
        sendJsonRequest({answer: false, question_id: question_id});
    }
 }
@@ -181,7 +181,7 @@ function checkLetter(){
     } else {
         sendJsonRequest({answer: false, question_id: question_id});
         $('.letter-btn').prop("disabled", true);
-        createFeedback(false, `Not quite! you selected "${btn_letter}". The answer is ${question["answer"].split('').join(' ')}`);
+        createFeedback(false, `Not quite! you selected "${btn_letter}".\nThe answer is ${question["answer"].split('').join(' ')}`);
     }
 }
 function checkWord(){
@@ -201,7 +201,7 @@ function checkWord(){
         }
     } else {
         $('.letter-btn').prop("disabled", true);
-        createFeedback(false, `Not quite! you clicked "${state["input"]}". The answer is ${question["answer"].split('').join(' ')}`);
+        createFeedback(false, `Not quite! you clicked "${state["input"]}".\nThe answer is ${question["answer"].split('').join(' ')}`);
         sendJsonRequest({answer: false, question_id: question_id});
     }
 }
@@ -230,7 +230,8 @@ function sendJsonRequest(data) {
       contentType: "application/json; charset=utf-8",
       data: JSON.stringify(data),
       success: function (result) {
-        score=result["score"]
+        let new_score=result["score"]
+        console.log(new_score)
       },
       error: function (request, status, error) {
         console.log("Error");

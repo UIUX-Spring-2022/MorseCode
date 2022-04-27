@@ -9,7 +9,9 @@
     const words = JSON.parse('{{ words|tojson }}');
     const quizQuestions = JSON.parse('{{ quiz_questions|tojson}}')
     const score = JSON.parse('{{ score|tojson}}')
+
     let question = null;
+    
     $(document).ready(function() {
         question = generateQuestion();
         displayQuestion(question);
@@ -24,7 +26,11 @@
 <div class="row justify-content-center align-items-center" id="place-holder">
 
 </div>
-<div class="row justify-content-center" id="feedback"></div>
+<div class="row justify-content-center">
+    <div class="col-md-4 justify-content-center">
+        <p class="text-center" id="feedback"></p>
+    </div>
+</div>
 <div class="row justify-content-center" id="middle-row">
 
 </div>

@@ -1,3 +1,4 @@
+from calendar import c
 import os
 
 from flask import Flask
@@ -34,6 +35,11 @@ def get_score():
             score += 1
     return score
 
+def reset_score():
+    global results, quiz_questions
+    results = []
+    quiz_questions = []
+
 @app.route('/')
 def welcome():
     return render_template('index.html')
@@ -46,6 +52,7 @@ def about():
 @app.route('/learn_letters/<id>')
 def learn_letters(id):
     global learn_combos, learn_combos_2, sounds_1, sounds_2
+    reset_score()
     lesson = learn_combos if id == "1" else learn_combos_2
     files = sounds_1 if id == "1" else sounds_2
     codes=[]
@@ -63,6 +70,7 @@ def learn_letters(id):
 @app.route('/learn/<id>')
 def learn(id):
     global letter_sounds
+    reset_score()
     if int(id)%2!=0:
         letter= letter_sounds[int(id)]["letter"].upper()
         sound = letter_sounds[int(id)]["link"]
@@ -93,6 +101,7 @@ def learn(id):
 
 @app.route('/quiz')
 def quiz():
+    reset_score()
     return render_template('quiz.html')
 
 @app.route('/question/<id>')
@@ -103,10 +112,9 @@ def question(id):
 
 @app.route('/update', methods=['POST'])
 def update():
-    global results
+    global results, quiz_questions
     answer, id = itemgetter('answer', 'question_id')(request.get_json())
-    print(answer)
-    print(id)
+    print('Question answer: {}\nQuestion id: {}'.format(answer, id))
     results.append(answer)
     quiz_questions.append(id)
 
@@ -114,10 +122,8 @@ def update():
 
 @app.route('/end')
 def end():
-    global results, quiz_questions
     result = get_score()
-    results = []
-    quiz_questions = []
+    reset_score()
     return render_template('end.html', result=result)
 
 if __name__ == '__main__':
