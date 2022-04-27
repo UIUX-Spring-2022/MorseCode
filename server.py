@@ -45,11 +45,13 @@ def reset_score():
 
 @app.route('/')
 def welcome():
+    reset_score()
     return render_template('index.html')
 #we probably need to divide the templates for learn and quiz into learn_1, learn_2 etc based on different layouts for learning/quizzing
 
 @app.route('/about')
 def about():
+    reset_score()
     global page_number
     return render_template('about.html', page_number=page_number)
 
