@@ -28,7 +28,7 @@ results = []
 quiz_questions = []
 
 page_number = 0
-page_number_quiz = 11
+page_number_quiz = 9
 
 def get_score():
     global results
@@ -114,7 +114,7 @@ def quiz():
 @app.route('/question/<id>')
 def question(id):
     global letter_sounds, words, quiz_questions, page_number_quiz
-    page_number_quiz += 1
+    page_number_quiz= 11 + int(id)
     score = get_score()
     return render_template('question.html', letters=letter_sounds, words=words, id=int(id), quiz_questions=quiz_questions, score=score, page_number_quiz=page_number_quiz)
 
