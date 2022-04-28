@@ -113,9 +113,10 @@ def quiz():
 
 @app.route('/question/<id>')
 def question(id):
-    global letter_sounds, words, quiz_questions
+    global letter_sounds, words, quiz_questions, page_number_quiz
+    page_number_quiz += 1
     score = get_score()
-    return render_template('question.html', letters=letter_sounds, words=words, id=int(id), quiz_questions=quiz_questions, score=score)
+    return render_template('question.html', letters=letter_sounds, words=words, id=int(id), quiz_questions=quiz_questions, score=score, page_number_quiz=page_number_quiz)
 
 @app.route('/update', methods=['POST'])
 def update():
@@ -138,9 +139,8 @@ def progress_bar():
     new_page_num = request.get_json()
     page_num = new_page_num["data"]
     percent = (page_num) / 20
-    print(percent)
     #25 = number of pages
-    percentage = percent * 100
+    percentage = int(percent * 100)
     return jsonify(percentage=percentage)
 
 if __name__ == '__main__':

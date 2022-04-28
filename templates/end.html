@@ -7,7 +7,34 @@
     let result = JSON.parse('{{ result|tojson }}');
     $(document).ready(function() {
         displayResults(result);
+        update_percentage(20)
+
+        $("#again").click(function(){
+            update_percentage(12)
+        });
     });
+
+    function update_percentage(page){
+      page_number = page+1
+      pg = {
+        "data": page_number,
+      }
+      $.ajax({
+        type: "POST",
+        url: "/update_progress",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(pg),
+        success: function(result){
+            let percentage = result["percentage"]
+            console.log(percentage)
+            document.getElementById("file").value = percentage;
+            $("#percent").empty()
+            $("#percent").append(percentage+"%")
+        }
+    });
+  }
+
 </script>
 
 <div class="row" id="upper-row">
@@ -17,6 +44,6 @@
 
     </div>
     <div class="col-md-2">
-        <a href="/question/1" class="btn btn-warning btn-large" role="button">Take Quiz Again</a>
+        <a href="/question/1" class="btn btn-warning btn-large" id="again" role="button">Take Quiz Again</a>
     </div>
 {% endblock %}

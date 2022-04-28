@@ -9,6 +9,7 @@
     const words = JSON.parse('{{ words|tojson }}');
     const quizQuestions = JSON.parse('{{ quiz_questions|tojson}}')
     const score = JSON.parse('{{ score|tojson}}')
+    const page = JSON.parse('{{ page_number_quiz|tojson}}');
 
     let question = null;
     
@@ -17,7 +18,29 @@
         displayQuestion(question);
         displayCurrentScore(score, id);
         generateNextButton(id);
+        update_percentage(page);
     });
+
+    function update_percentage(page){
+      page_number = page+1
+      pg = {
+        "data": page_number,
+      }
+      $.ajax({
+        type: "POST",
+        url: "/update_progress",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(pg),
+        success: function(result){
+            let percentage = result["percentage"]
+            console.log(percentage)
+            document.getElementById("file").value = percentage;
+            $("#percent").empty()
+            $("#percent").append(percentage+"%")
+        }
+    });
+  }
 </script>
 
 <div class="row justify-content-center" id="upper-row">
