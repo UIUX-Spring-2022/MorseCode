@@ -28,7 +28,7 @@ results = []
 quiz_questions = []
 
 page_number = 0
-page_number_quiz = 9
+page_number_quiz = 11
 
 def get_score():
     global results
@@ -108,6 +108,7 @@ def learn(id):
 @app.route('/quiz')
 def quiz():
     global page_number_quiz
+    page_number_quiz=11
     reset_score()
     return render_template('quiz.html', page_number_quiz=page_number_quiz)
 
