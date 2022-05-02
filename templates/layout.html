@@ -36,24 +36,23 @@
     <link rel="stylesheet" href="/static/main.css" />
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light" id="bar">
+      <a class="navbar-brand" href="/">MORSE CODE</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" id="about_link" href="/about">about</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="learn_link" href="/learn_letters/1">learn</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="quiz_link" href="/quiz">quiz</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <div class="container">
-      <div class="row">
-        <nav class="navbar navbar-expand-lg navbar-light">
-          <a class="navbar-brand" href="/">MORSE CODE</a>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" id="about_link" href="/about">about</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="learn_link" href="/learn_letters/1">learn</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="quiz_link" href="/quiz">quiz</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
         <label for="file"></label>
         <div class="progress_bar">
         <progress id="file" max="100" value="0"></progress>
@@ -61,7 +60,6 @@
           0%
         </span>
         </div>
-      </div>
       {% block content %} {% endblock %}
     </div>
   </body>
