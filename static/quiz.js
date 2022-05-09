@@ -1,33 +1,33 @@
+function generateQuestionID() {
+
+    let code = getRandomInt(4);
+    let letter_num = getRandomInt(8);
+    let word_num = getRandomInt(3);
+    let question_id = (code === 3) ? (code * 10) + word_num : (code * 10) + letter_num;
+    return [code, (code === 3) ? word_num : letter_num, question_id];
+}
 function generateQuestion(){
-    let random_num = getRandomInt(4);
-    switch(random_num){
-        case 0:
-            return createQuestion(0);
-        case 1:
-            return createQuestion(1);
-        case 2:
-            return createQuestion(2);
-        case 3:
-            return createQuestion(3);
-        default:
-            throw new Error("question generator fell to default");
+    let is_used = true;
+    let questionIDs = []
+    for(let {question_id} in quizQuestions) {
+        questionIDs.push(question_id)
+    }
+    while(is_used) {
+        let [code, word_letter, question_id] = generateQuestionID();
+        if(!quizQuestions.includes(question_id)) {
+            is_used = false;
+            return createQuestion(code, word_letter, question_id);
+        }
     }
 }
-function createQuestion(code) {
+function createQuestion(code, word_letter, question_id) {
+    console.log(code)
     let types = ["soundSeq", "letterSeq", "guessLetter", "guessWord"]
     let type = types[code];
 
-    let letter_num = getRandomInt(8);
-    let word_num = getRandomInt(3);
-    let letter = letters[letter_num];
-    let word = words[word_num];
+    let letter = letters[word_letter];
+    let word = code === 3 ?  words[word_letter] : words[0];
     
-    let question_id = (code === 3) ? (code * 10) + word_num : (code * 10) + letter_num;
-
-    if(quizQuestions.includes(question_id)) {
-        console.log('used question previously');
-        generateQuestion();
-    }
     let question_map = {
         "soundSeq":    ['Listen Here', 'Tap the buttons below to write out the sequence', letter["code"].replace(/\s/g, ''), letter],
         "letterSeq":   ['What letter is this?', '', letter["letter"], letter],
@@ -47,7 +47,8 @@ function createQuestion(code) {
             "index": 0,
             "input": "",
             "correct": false,
-        }
+        },
+        "user_answer": null
     }
 }
 function displayQuestion(question) {
@@ -90,8 +91,7 @@ function displayLetterSeq(question) {
                             <div class="col-md-12"></div><div><h6>${question["instructions"]}</h6></div>
                             <div class="col-md-12"></div> <div><h1>${question["data"]["code"]}</h1></div>`);
     let buttons = [];
-    let letter_ind = letters.indexOf(question["data"]);
-    buttons.push(letter_ind);
+    buttons.push(question["data"]["id"] - 1);
     buttons = fillButtonArray(4, buttons);
     generateLetterButtons(buttons, checkLetter);
     generatePlaceHolders(question["answer"]);
@@ -156,7 +156,8 @@ function checkSeq() {
             $('.dash-btn, .dot-btn').prop("disabled", true);
             $(`#placehold-${state["index"]}`).removeClass('place-hold').addClass(code === '.' ? 'small-dot' : 'small-dash');
             createFeedback(true, "Correct!");
-            sendJsonRequest({answer: true, question_id: question_id});
+            question["user_answer"] = true;
+            sendJsonRequest({answer: true, question: question});
        } else {
            console.log(state["index"]);
            $(`#placehold-${state["index"]}`).removeClass('place-hold').addClass(code === '.' ? 'small-dot' : 'small-dash');
@@ -167,21 +168,24 @@ function checkSeq() {
    } else {
        $('.dash-btn, .dot-btn').prop("disabled", true);
        createFeedback(false, `Not quite! you tapped sequence "${state["input"]}".\nThe answer is ${question["answer"].split('').join(' ')}`);
+       question["user_answer"] = false;
        sendJsonRequest({answer: false, question_id: question_id});
    }
 }
 function checkLetter(){
     let btn_letter = $(this).attr('letter')
-    let {state, answer, question_id} = question;
+    let {state, answer} = question;
     if(btn_letter === answer) {
         $(`#placehold-${state["index"]}`).removeClass('place-hold').append(`<h1>${btn_letter}</h1>`);
         createFeedback(true, "Correct!");
         $('.letter-btn').prop("disabled", true);
-        sendJsonRequest({answer: true, question_id: question_id});
+        question["user_answer"] = true;
+        sendJsonRequest({answer: true, question: question});
     } else {
-        sendJsonRequest({answer: false, question_id: question_id});
         $('.letter-btn').prop("disabled", true);
         createFeedback(false, `Not quite! you selected "${btn_letter}".\nThe answer is ${question["answer"].split('').join(' ')}`);
+        question["user_answer"] = false;
+        sendJsonRequest({answer: false, question: question});
     }
 }
 function checkWord(){
@@ -193,7 +197,8 @@ function checkWord(){
              $('.letter-btn').prop("disabled", true);
              $(`#placehold-${state["index"]}`).removeClass('place-hold').append(`<h1>${letter}</h1>`);
              createFeedback(true, "Correct!");
-             sendJsonRequest({answer: true, question_id: question_id});
+             question["user_answer"] = true;
+             sendJsonRequest({answer: true, question: question});
         } else {
             $(`#placehold-${state["index"]}`).removeClass('place-hold').append(`<h1>${letter}</h1>`);
             state["index"] += 1;
@@ -202,7 +207,8 @@ function checkWord(){
     } else {
         $('.letter-btn').prop("disabled", true);
         createFeedback(false, `Not quite! you clicked "${state["input"]}".\nThe answer is ${question["answer"].split('').join(' ')}`);
-        sendJsonRequest({answer: false, question_id: question_id});
+        question["user_answer"] = false;
+        sendJsonRequest({answer: false, question: question});
     }
 }
 function displayResults(result){

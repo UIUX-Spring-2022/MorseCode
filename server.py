@@ -115,17 +115,22 @@ def quiz():
 @app.route('/question/<id>')
 def question(id):
     global letter_sounds, words, quiz_questions, page_number_quiz
+    if len(quiz_questions) == int(id):
+        question = quiz_questions[int(id) - 1]
+    else:
+        question = None    
+    print(question)
     page_number_quiz= 11 + int(id)
     score = get_score()
-    return render_template('question.html', letters=letter_sounds, words=words, id=int(id), quiz_questions=quiz_questions, score=score, page_number_quiz=page_number_quiz)
+    return render_template('question.html', letters=letter_sounds, words=words, id=int(id), quiz_questions=quiz_questions, score=score, page_number_quiz=page_number_quiz, question=question)
 
 @app.route('/update', methods=['POST'])
 def update():
     global results, quiz_questions
-    answer, id = itemgetter('answer', 'question_id')(request.get_json())
-    print('Question answer: {}\nQuestion id: {}'.format(answer, id))
+    answer, question = itemgetter('answer', 'question')(request.get_json())
+    print('Question answer: {}\nQuestion: {}'.format(answer, question))
     results.append(answer)
-    quiz_questions.append(id)
+    quiz_questions.append(question)
 
     return jsonify(score=get_score())
 

@@ -11,10 +11,12 @@
     const score = JSON.parse('{{ score|tojson}}')
     const page = JSON.parse('{{ page_number_quiz|tojson}}');
 
-    let question = null;
+    let question = JSON.parse('{{question|tojson}}');
     
     $(document).ready(function() {
+      if(question === null) {
         question = generateQuestion();
+      }
         displayQuestion(question);
         displayCurrentScore(score, id);
         generateNextButton(id);
