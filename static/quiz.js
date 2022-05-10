@@ -9,14 +9,18 @@ function generateQuestionID() {
 function generateQuestion(){
     let is_used = true;
     let questionIDs = []
-    for(let {question_id} in quizQuestions) {
+    for(let used_question of quizQuestions) {
+        console.log(used_question);
+        let {question_id} = used_question
         questionIDs.push(question_id)
     }
+    console.log("questions IDs");
     console.log(questionIDs);
     while(is_used) {
         let [code, word_letter, question_id] = generateQuestionID();
         if(!questionIDs.includes(question_id)) {
             is_used = false;
+            console.log(question_id);
             return createQuestion(code, word_letter, question_id);
         }
     }
@@ -191,7 +195,7 @@ function checkLetter(){
 }
 function checkWord(){
     let letter = $(this).attr('letter');
-    let {state, answer, question_id} = question;
+    let {state, answer} = question;
     state["input"] += letter + " ";
     if(letter === answer[state["index"]]) {
         if(state["index"] === answer.length -1) {

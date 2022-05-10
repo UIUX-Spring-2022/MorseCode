@@ -128,6 +128,7 @@ def question(id):
 def update():
     global results, quiz_questions
     answer, question = itemgetter('answer', 'question')(request.get_json())
+    print(question)
     question_id = itemgetter('question_id')(question)
     print('Question answer: {}\nQuestion id: {}'.format(answer, question_id))
     results.append(answer)
