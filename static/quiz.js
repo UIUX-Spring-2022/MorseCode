@@ -12,9 +12,10 @@ function generateQuestion(){
     for(let {question_id} in quizQuestions) {
         questionIDs.push(question_id)
     }
+    console.log(questionIDs);
     while(is_used) {
         let [code, word_letter, question_id] = generateQuestionID();
-        if(!quizQuestions.includes(question_id)) {
+        if(!questionIDs.includes(question_id)) {
             is_used = false;
             return createQuestion(code, word_letter, question_id);
         }
@@ -169,7 +170,7 @@ function checkSeq() {
        $('.dash-btn, .dot-btn').prop("disabled", true);
        createFeedback(false, `Not quite! you tapped sequence "${state["input"]}".\nThe answer is ${question["answer"].split('').join(' ')}`);
        question["user_answer"] = false;
-       sendJsonRequest({answer: false, question_id: question_id});
+       sendJsonRequest({answer: false, question: question});
    }
 }
 function checkLetter(){
