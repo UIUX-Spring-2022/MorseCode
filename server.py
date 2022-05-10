@@ -128,7 +128,8 @@ def question(id):
 def update():
     global results, quiz_questions
     answer, question = itemgetter('answer', 'question')(request.get_json())
-    print('Question answer: {}\nQuestion: {}'.format(answer, question))
+    question_id = itemgetter('question_id')(question)
+    print('Question answer: {}\nQuestion id: {}'.format(answer, question_id))
     results.append(answer)
     quiz_questions.append(question)
 
@@ -136,7 +137,9 @@ def update():
 
 @app.route('/end')
 def end():
+    global quiz_questions
     result = get_score()
+    quiz_questions = []
     reset_score()
     return render_template('end.html', result=result)
 
