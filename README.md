@@ -1,3 +1,3 @@
 # FinalProject
-This is the repository for the final project of UIUX taught by professor Lydia Chilton.
+This is the repository for our website designed to teach users the basics of Morse Code.
 Final Project Demo accessible via the youtube link here: https://www.youtube.com/watch?v=G7QUa_smYZM.
